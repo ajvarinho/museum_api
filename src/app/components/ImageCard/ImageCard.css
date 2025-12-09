@@ -37,6 +37,11 @@ figure > img {
     background: pink;
 }
 
+input[type="checkbox"]{
+    height: 0;
+    width: 0;
+}
+
 /* .large {
     position: absolute;
     inset: 0;

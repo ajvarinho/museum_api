@@ -2,8 +2,8 @@ header {
     position: fixed;
     top: 0;
     height: fit-content;
-    padding: 2rem 0;
-    font-size: 4rem;
+    padding: 2rem 1rem;
+    font-size: 2rem;
     width: 100%;
     z-index: 5;
     background: black;

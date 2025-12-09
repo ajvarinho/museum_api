@@ -33,7 +33,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-4 gap-8 px-8 main-container">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-8 main-container">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
             <ImgCard key={img.id} image={img} onToggleFavorite={() => {}} />

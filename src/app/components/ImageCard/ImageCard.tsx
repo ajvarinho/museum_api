@@ -89,11 +89,11 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
         </figure>
 
         <div className="img-menu flex flex-row justify-around">
-            <button className="info btn" onClick={openInfo}>info</button>
-            <button className="large btn" onClick={openLarge}>large</button>
-            <div className="fav-wrap">
+            <button className="info btn" onClick={openInfo}>Info</button>
+            <button className="large btn" onClick={openLarge}>See large</button>
+            <div className="fav-wrap btn">
               <label htmlFor="save">
-                Save
+                Add to favorites
                 <input
                   type="checkbox"
                   checked={image.favorites}
