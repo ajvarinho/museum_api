@@ -1,5 +1,5 @@
 import { imgResponse, SearchAPIResponse, ImageData} from './interfaces';
-import fallbackImg from "../../../public/2.jpg";
+import fallbackImg from "../../public/2.jpg";
 
 const API_URL =
   'https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q="painting"';
