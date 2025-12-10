@@ -26,17 +26,30 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     setLoading(false);
   }, [objectIds, loading]);
 
-  // Initial load
-//   useEffect(() => {
-//     loadImages();
-//   }, [objectIds]);
+  const handleToggleFavorite = (id: number, checked: boolean) => {
+
+    setImages((prev) =>
+    prev.map((img) =>
+        img.id === id ? { ...img, favorites: checked } : img
+      )
+    );
+
+    const image = images.find((img) => img.id === id);
+    if (!image) return;
+    if (checked) {
+      localStorage.setItem(id.toString(), JSON.stringify(image));
+    } else {
+      localStorage.removeItem(id.toString());
+    }
+  };
+
 
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-8 main-container">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
-            <ImgCard key={img.id} image={img} onToggleFavorite={() => {}} />
+            <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} />
           </div>
         ))}
       </div>
