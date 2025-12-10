@@ -3,8 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 //import Image from "next/image";
 //import ImgCard from '../../components/img-card/ImgCard';
-import Header from '../components/Header/Header';
-import ImageData from '../../app/services/interfaces';
+import Header from '../../components/Header/Header';
+import { ImageData } from '../../services/interfaces';
 
 import Link from 'next/link';
 
@@ -28,10 +28,10 @@ const Gallery: React.FC = () => {
     return savedImg;
   } 
 
-  useEffect(() => {
-    const stored = getFavorites();
-    setFavorites(stored);
-  }, []);
+//   useEffect(() => {
+//     const stored = getFavorites();
+//     setFavorites(stored);
+//   }, []);
 
 
   return (

@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useState, useCallback } from "react";
-import { getData } from "../app/services/fetch";
+import { getData } from "../services/fetch";
 //import { ImageData } from "../../services/interfaces";
-import Header from './components/Header/Header';
-import ImageGrid from './components/ImageGrid/ImageGrid';
+import Header from '../components/Header/Header';
+import ImageGrid from '../components/ImageGrid/ImageGrid';
 
 export default function Home() {
 
