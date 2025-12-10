@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 interface Props {
-  base64: string | null;
+  base64: string;
   dimensions: {
     x: number,
     y: number
@@ -10,7 +10,7 @@ interface Props {
 
 export default function Canvas ({ base64, dimensions }: Props)  {
 
-const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const pointsRef = useRef<{ x: number; y: number }[]>([]);
 

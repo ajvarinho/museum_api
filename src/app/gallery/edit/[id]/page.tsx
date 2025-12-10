@@ -63,7 +63,9 @@ export default function EditImagePage() {
     <main className="p-4">
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
       <div>
-        <Canvas base64={base64} dimensions={dimensions}></Canvas>
+        {base64 && dimensions && (
+          <Canvas base64={base64} dimensions={dimensions} />
+        )}
       </div>
       <div className="edit-controls">
         <div className="stroke-wrap p-4">

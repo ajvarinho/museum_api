@@ -1,8 +1,5 @@
 'use client'
-
 import { useRef, useState, useEffect } from "react";
-//import Image from "next/image";
-//import ImgCard from '../../components/img-card/ImgCard';
 import Header from '../../components/Header/Header';
 import { ImageData } from '../../services/interfaces';
 
