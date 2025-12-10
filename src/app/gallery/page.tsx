@@ -17,13 +17,13 @@ const Gallery: React.FC = () => {
     setLoading(true);
     const savedImg:ImageData[] = [];
     Object.keys(localStorage).forEach((key) => {
-      const item: string | null = localStorage.getItem(key);
-      if (item) {
-      console.log('gallery', item);
-        savedImg.push(JSON.parse(item));
-        setLoading(false);
-      }
-    });
+    const item: string | null = localStorage.getItem(key);
+    if (item) {
+    console.log(item);
+      savedImg.push(JSON.parse(item));
+      setLoading(false);
+    }
+  });
     return savedImg;
   } 
 
