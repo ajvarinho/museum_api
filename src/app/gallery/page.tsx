@@ -27,10 +27,10 @@ const Gallery: React.FC = () => {
     return savedImg;
   } 
 
-//   useEffect(() => {
-//     const stored = getFavorites();
-//     setFavorites(stored);
-//   }, []);
+  useEffect(() => {
+    const stored = getFavorites();
+    setFavorites(stored);
+  }, []);
 
 
   return (
