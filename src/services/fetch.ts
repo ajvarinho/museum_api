@@ -79,8 +79,6 @@ const FALLBACK_IMG = fallbackImg.src;
     }
   };
 
-
-
     // Use IDs to load 10 random images
   export const loadImages = async (objectIds:number[]): Promise<ImageData[]> => {
 
@@ -118,3 +116,19 @@ const FALLBACK_IMG = fallbackImg.src;
     //   setLoading(false);
     // }
   };
+
+  /**
+   * promise to convert image url to base64
+   * @param url 
+   * @returns promise (base64)
+   */
+
+  export const toDataURL = (url: string | URL ) => fetch(url)
+  .then(response => response.blob())
+  .then(blob => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  }));
+
