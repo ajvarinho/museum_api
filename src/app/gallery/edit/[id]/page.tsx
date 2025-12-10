@@ -8,7 +8,10 @@ import Canvas from "@/components/Canvas/Canvas";
 export default function EditImagePage() {
   const { id } = useParams<{ id: string }>();
   const [base64, setBase64] = useState<string | null>(null);
-  const [dimensions, setDimensions] = useState<object>({x: 1, y: 1});
+  const [dimensions, setDimensions] = useState<{ x: number; y: number }>({
+    x: 1,
+    y: 1,
+  });
 
   /**
    * handle stroke weight and color change
@@ -36,12 +39,24 @@ export default function EditImagePage() {
     const saved = localStorage.getItem(id);
     if (!saved) return;
     const parsed = JSON.parse(saved);
-    const proxiedUrl = `/api/image-proxy?url=${encodeURIComponent(parsed.srcSmall)}`;
-    const check = new Image();
-    check.src = proxiedUrl;
-    console.log('check height', dimensions)
-    toDataURL(proxiedUrl).then((dataUrl) => setBase64(dataUrl as string));
-    setDimensions({x: check.width, y: check.height})
+    const load = async () => {
+        const proxiedUrl = `/api/image-proxy?url=${encodeURIComponent(parsed.srcSmall)}`;
+
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = proxiedUrl;
+
+        await new Promise<void>((resolve) => {
+          img.onload = () => resolve();
+        });
+
+        setDimensions({ x: img.width, y: img.height });
+        const base64 = await toDataURL(proxiedUrl);
+        setBase64(base64 as string);
+      };
+
+      load();
+
   }, [id]);
 
   return (
