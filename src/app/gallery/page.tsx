@@ -20,7 +20,6 @@ const Gallery: React.FC = () => {
     const item: string | null = localStorage.getItem(key);
     if (item) {
     console.log(item);
-    //@ts-ignore
       savedImg.push(JSON.parse(item));
       setLoading(false);
     }
