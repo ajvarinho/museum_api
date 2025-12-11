@@ -6,9 +6,10 @@ interface Props {
     x: number,
     y: number
   };
+  color: string
 }
 
-export default function Canvas ({ base64, dimensions }: Props)  {
+export default function Canvas ({ base64, dimensions, color }: Props)  {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -30,17 +31,24 @@ export default function Canvas ({ base64, dimensions }: Props)  {
     const rect = canvasRef.current!.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+    console.log('color check', color)
 
     pointsRef.current.push({ x, y });
     console.log("marked", pointsRef.current);
+    
   };
 
   return (
+    <>
     <canvas
       ref={canvasRef}
       width={dimensions.x}
       height={dimensions.y}
       onClick={handleClick}
     />
+    <div>
+      <p className="info">alo bre</p>
+    </div>
+    </>
   );
 }
