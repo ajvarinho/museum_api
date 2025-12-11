@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { toDataURL } from '../../../../services/fetch';
 import Canvas from "@/components/Canvas/Canvas";
+import CanvasControls from '@/components/CanvasControls/CanvasControls';
 
 
 export default function EditImagePage() {
@@ -13,24 +14,9 @@ export default function EditImagePage() {
     y: 1,
   });
 
-  /**
-   * handle stroke weight and color change
-   */
-  const strokeRef = useRef<number>(1);
-  const colorRef = useRef<string>('#000000');
-  const cropRef = useRef<boolean>(false);
-
-  const handleStrokeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    strokeRef.current = Number(e.target.value);
-  };
-
-  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    colorRef.current = e.target.value;
-  };
-
-  const handleCrop = (e: React.ChangeEvent<HTMLInputElement>) => {
-    cropRef.current = e.target.checked;
-  };
+  const [strokeWidth, setStrokeWidth] = useState(1);
+  const [color, setColor] = useState("#000000ff");
+  const [crop, setCrop] = useState(false);
 
   /**
    * get image from localStorage and convert to base64
@@ -64,25 +50,23 @@ export default function EditImagePage() {
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
       <div>
         {base64 && dimensions && (
-          <Canvas base64={base64} dimensions={dimensions} color={colorRef.current}/>
+          <Canvas 
+            base64={base64} 
+            dimensions={dimensions}   
+            strokeWidth={strokeWidth}
+            color={color}
+            mode={crop ? "crop" : "draw"}
+            />
         )}
       </div>
-      <div className="edit-controls">
-        <div className="stroke-wrap p-4">
-          <label htmlFor="stroke-weight">
-            Stroke Weight
-            <input id="stroke-weight" name="stroke-weight" type="range" min="1" max="10" onChange={handleStrokeChange}></input>
-          </label>
-          <label htmlFor="color-input">
-            Stroke Color
-            <input id="color-input" name="color-input" type="color" defaultValue="128, 128, 255" onChange={handleColorChange}></input>
-          </label>
-          <label htmlFor="crop">
-            Crop image
-            <input id="crop" name="crop" type="checkbox" defaultChecked={false} onChange={handleCrop}></input>
-          </label>
-        </div>
-      </div>
+      <CanvasControls
+        strokeWidth={strokeWidth}
+        onStrokeChange={setStrokeWidth}
+        color={color}
+        onColorChange={setColor}
+        crop={crop}
+        setCrop={setCrop}
+      />
     </main>
   );
 }

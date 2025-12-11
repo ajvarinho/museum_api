@@ -4,7 +4,7 @@
 export interface SearchAPIResponse {
   total: number;
   objectIDs: number[] | null;
-}
+};
 
 // Response from second fetch - specific image (/objects/:id)
 export interface imgResponse {
@@ -15,7 +15,7 @@ export interface imgResponse {
   artistDisplayName?: string;
   medium?: string;
   dimensions?: string;
-}
+};
 
 // Data format - image type fetched and saved
 export interface ImageData {
@@ -26,14 +26,34 @@ export interface ImageData {
   author?: string;
   medium?: string;
   favorites: boolean;
-}
+};
 
 //
 export interface ImgCardProps {
   image: ImageData;
   onToggleFavorite: (id: number, checked: boolean) => void;
-}
+};
 
 export interface entry {
   isIntersecting: boolean;
-}
+};
+
+// canvas props
+
+export interface CanvasProps {
+  base64: string;
+  dimensions: { x: number; y: number };
+  strokeWidth: number;
+  color: string;
+  mode: "draw" | "crop";
+};
+
+export interface CanvasControlsProps {
+  strokeWidth: number;
+  onStrokeChange: (n: number) => void;
+  color: string;
+  onColorChange: (c: string) => void;
+  crop: boolean;
+  setCrop: (v: boolean) => void;
+};
+
