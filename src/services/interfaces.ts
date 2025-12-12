@@ -46,6 +46,7 @@ export interface CanvasProps {
   strokeWidth: number;
   color: string;
   mode: "draw" | "crop";
+  onShapeReady: (ready: boolean) => void;
 };
 
 export interface CanvasControlsProps {
@@ -55,5 +56,12 @@ export interface CanvasControlsProps {
   onColorChange: (c: string) => void;
   crop: boolean;
   setCrop: (v: boolean) => void;
+  shapeReady: boolean;
+};
+
+// canvas crop point type
+export interface Point {
+  x: number;
+  y: number;
 };
 

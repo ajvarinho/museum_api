@@ -17,6 +17,8 @@ export default function EditImagePage() {
   const [strokeWidth, setStrokeWidth] = useState(1);
   const [color, setColor] = useState("#000000ff");
   const [crop, setCrop] = useState(false);
+  //
+  const [shapeReady, setShapeReady] = useState(false);
 
   /**
    * get image from localStorage and convert to base64
@@ -56,6 +58,7 @@ export default function EditImagePage() {
             strokeWidth={strokeWidth}
             color={color}
             mode={crop ? "crop" : "draw"}
+            onShapeReady={setShapeReady}
             />
         )}
       </div>
@@ -66,6 +69,7 @@ export default function EditImagePage() {
         onColorChange={setColor}
         crop={crop}
         setCrop={setCrop}
+        shapeReady={shapeReady}
       />
     </main>
   );

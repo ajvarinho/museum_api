@@ -1,4 +1,5 @@
 import { CanvasControlsProps } from '@/services/interfaces';
+import '@/components/CanvasControls/CanvasControls.css';
 
 export default function CanvasControls({
   strokeWidth,
@@ -7,6 +8,7 @@ export default function CanvasControls({
   onColorChange,
   crop,
   setCrop,
+  shapeReady
 }: CanvasControlsProps) {
   return (
     <div className="edit-controls">
@@ -38,6 +40,16 @@ export default function CanvasControls({
           onChange={(e) => setCrop(e.target.checked)}
         />
       </label>
+      <div>
+      {shapeReady ? (
+        <>
+          <p>Shape is ready!</p>
+          <button className="btn">Save Shape</button>
+        </>
+      ) : crop && (
+        <p>Please add at least 3 points to define the crop shape</p>
+      )}
+    </div>
     </div>
   );
 }

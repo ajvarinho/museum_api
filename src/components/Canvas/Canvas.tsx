@@ -1,16 +1,20 @@
 import { useRef, useEffect, useState } from "react";
 import { CanvasProps } from '@/services/interfaces';
+import { polygonCenter } from '@/services/canvas';
+import { Point } from '@/services/interfaces';
 
-export default function Canvas ({ base64, dimensions, strokeWidth, color, mode }: CanvasProps)  {
+export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady }: CanvasProps)  {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const pointsRef = useRef<{ x: number; y: number }[]>([]);
 
   const [isDrawing, setIsDrawing] = useState(false);
+  const [cropShape, setCropShape] = useState(false);
 
   // crop mode state
-  const cropPoints = useRef<{ x: number; y: number }[]>([]);
+  //const cropPoints = useRef<{ x: number; y: number }[]>([]);
+  const cropPoints = useRef<Point[]>([]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -86,6 +90,10 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode }
     }
 
     //add crop calculation
+    if (points.length > 3) {
+      onShapeReady(true);
+      polygonCenter(points);
+    }
   };
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {

@@ -1,3 +1,5 @@
+import { Point } from '@/services/interfaces';
+
 // const x = Math.round(p.mouseX);
 // valsX.push(x);
 // const y = Math.round(p.mouseY);
@@ -6,6 +8,10 @@
 // x: x,
 // y: y
 // };
+
+export const polygonCenter = (points: Point[]) => {
+    console.log(points);
+};
 
 // // find the center of gravity for user defined shape
 // const sumX = valsX.reduce(
