@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { CanvasProps } from '@/services/interfaces';
-import { polygonCenter } from '@/services/canvas';
+import { polygonCenter, isPointInside } from '@/services/canvas';
 import { Point } from '@/services/interfaces';
 
 export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady }: CanvasProps)  {
@@ -91,8 +91,37 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
 
     //add crop calculation
     if (points.length > 3) {
+      // TODO 1.
       onShapeReady(true);
-      polygonCenter(points);
+      const cog = polygonCenter(points);
+      console.log('COG', cog);
+      ctx.beginPath();
+      ctx.arc(cog.cogX, cog.cogY, 3, 0, Math.PI * 2);
+      ctx.fill();
+      //
+      const cutout = [];
+      // TODO 2.
+      for (let y = 0; y < dimensions.y; y++) {
+        for (let x = 0; x < dimensions.x; x++) {
+          if (isPointInside(x, y, points)) {
+                cutout.push({
+                  x,
+                  y,
+                });
+          }
+        }
+      }
+      console.log(cutout)
+      /**
+       * TODO - 
+       * 1. calculate leftmost and uppermost points of cutout / points arr for getImageData(sx, sy, sw, sh)
+       * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData
+       * sx = leftmost
+       * sy = uppermost
+       * sw = rightmost ?
+       * sh = downmost ?
+       * 2. apply the isPointInside method to this area, to reduce loop
+       */
     }
   };
 

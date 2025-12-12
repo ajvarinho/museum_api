@@ -1,30 +1,36 @@
 import { Point } from '@/services/interfaces';
 
-// const x = Math.round(p.mouseX);
-// valsX.push(x);
-// const y = Math.round(p.mouseY);
-// valsY.push(y);
-// const coordinatePair: mouseCoordinates = {
-// x: x,
-// y: y
-// };
-
 export const polygonCenter = (points: Point[]) => {
     console.log(points);
+    const valX: number[] = [];
+    const valY: number[] = [];
+    for(let i = 0; i < points.length; i++){
+        valX.push(points[i].x);
+        valY.push(points[i].y);
+    }
+    const sumX = valX.reduce((accumulator, currentValue) => accumulator + currentValue,0);
+    const sumY = valY.reduce((accumulator, currentValue) => accumulator + currentValue,0);
+    const cogX = Math.round(sumX / valX.length);
+    const cogY = Math.round(sumY / valY.length);
+    return {
+        cogX,
+        cogY
+    }
 };
 
-// // find the center of gravity for user defined shape
-// const sumX = valsX.reduce(
-// (accumulator, currentValue) => accumulator + currentValue,
-// 0,
-// );
 
-// const sumY = valsY.reduce(
-// (accumulator, currentValue) => accumulator + currentValue,
-// 10,
-// );
+export const isPointInside = (x: number, y: number, polygon:Point[]) => {
+  let inside = false;
 
-// const cogX = sumX / valsX.length;
-// const cogY = sumY / valsY.length;
-// p.strokeWeight(5);
-// p.point(cogX, cogY);
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i].x, yi = polygon[i].y;
+    const xj = polygon[j].x, yj = polygon[j].y;
+
+    const intersect =
+      ((yi > y) !== (yj > y)) &&
+      (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+
+    if (intersect) inside = !inside;
+  }
+  return inside;
+};
