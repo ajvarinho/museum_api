@@ -6,8 +6,10 @@ import { Point } from '@/services/interfaces';
 export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady }: CanvasProps)  {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const cutoutRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const pointsRef = useRef<{ x: number; y: number }[]>([]);
+  const pointsRefCtx = useRef<CanvasRenderingContext2D | null>(null);
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [cropShape, setCropShape] = useState(false);
@@ -93,25 +95,68 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     if (points.length > 3) {
       // TODO 1.
       onShapeReady(true);
-      const cog = polygonCenter(points);
-      console.log('COG', cog);
-      ctx.beginPath();
-      ctx.arc(cog.cogX, cog.cogY, 3, 0, Math.PI * 2);
-      ctx.fill();
-      //
-      const cutout = [];
+      const bounds = points.reduce(
+        (acc, p) => ({
+          minX: Math.min(acc.minX, p.x),
+          maxX: Math.max(acc.maxX, p.x),
+          minY: Math.min(acc.minY, p.y),
+          maxY: Math.max(acc.maxY, p.y),
+        }),
+        {
+          minX: points[0].x,
+          maxX: points[0].x,
+          minY: points[0].y,
+          maxY: points[0].y,
+        }
+      );
+
+      console.log('cutout', bounds);
+      
+      //const src = ctx.getImageData(0, 0, w, h);
+      const cutoutPoints = [];
       // TODO 2.
-      for (let y = 0; y < dimensions.y; y++) {
-        for (let x = 0; x < dimensions.x; x++) {
+      // for (let y = 0; y < dimensions.y; y++) {
+      //   for (let x = 0; x < dimensions.x; x++) {
+      //     if (isPointInside(x, y, points)) {
+      //           cutoutPoints.push({
+      //             x,
+      //             y,
+      //           });
+      //     }
+      //   }
+      // }
+      
+      for (let y = bounds.minY; y <= bounds.maxY; y++) {
+        for (let x = bounds.minX; x <= bounds.maxX; x++) {
           if (isPointInside(x, y, points)) {
-                cutout.push({
-                  x,
-                  y,
-                });
+            cutoutPoints.push({ x, y });
           }
         }
       }
-      console.log(cutout)
+      console.log('ctouts', cutoutPoints);
+
+      const cropCanvas = cutoutRef.current!;
+      const pointsCtx = cropCanvas.getContext("2d");
+      if (!pointsCtx) return;
+
+      const src = ctx.getImageData(0, 0, bounds.maxX, bounds.maxY);
+      const dst = ctx.createImageData(bounds.maxX - bounds.minX, bounds.maxY - bounds.minY);
+
+      for (let y = bounds.minY; y <= bounds.maxY; y++) {
+        for (let x = bounds.minX; x <= bounds.maxX; x++) {
+          if (isPointInside(x, y, points)) {
+            const i = (y * bounds.maxY + x) * 4;
+            dst.data[i]     = src.data[i];
+            dst.data[i + 1] = src.data[i + 1];
+            dst.data[i + 2] = src.data[i + 2];
+            dst.data[i + 3] = 255;
+          }
+        }
+      }
+
+      pointsCtx.putImageData(dst, 0, 0);
+
+
       /**
        * TODO - 
        * 1. calculate leftmost and uppermost points of cutout / points arr for getImageData(sx, sy, sw, sh)
@@ -139,15 +184,22 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={dimensions.x}
-      height={dimensions.y}
-      onClick={handleMouseMove}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        width={dimensions.x}
+        height={dimensions.y}
+        onClick={handleMouseMove}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      />
+      <div className="cutout">
+        <canvas ref={cutoutRef}
+        width={500}
+        height={500}/>
+      </div>
+    </>
   );
 }
