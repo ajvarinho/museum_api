@@ -48,8 +48,8 @@ export default function CanvasControls({
       </label>
       {shapeReady ? (
         <>
-          <p>Shape is ready!</p>
-          <button className="btn">Save Shape</button>
+          <p>Shape is ready</p>
+          <button className="btn">Save shape</button>
         </>
       ) : crop && (
         <p>Please add at least 3 points to define the crop shape</p>
