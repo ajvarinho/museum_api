@@ -12,26 +12,32 @@ export default function CanvasControls({
 }: CanvasControlsProps) {
   return (
     <div className="edit-controls">
-      <label>
-        Stroke Weight
-        <input
-          type="range"
-          min={1}
-          max={10}
-          value={strokeWidth}
-          onChange={(e) => onStrokeChange(Number(e.target.value))}
-        />
-      </label>
 
-      <label>
-        Stroke Color
-        <input
-          type="color"
-          value={color}
-          onChange={(e) => onColorChange(e.target.value)}
-        />
-      </label>
+      <div className="draw-mode flex flex-col gap-1">
+        <h3>draw mode</h3>
+        <label className="flex flex-col">
+          Stroke Weight: {strokeWidth}
+          <input
+            type="range"
+            min={1}
+            max={10}
+            value={strokeWidth}
+            onChange={(e) => onStrokeChange(Number(e.target.value))}
+          />
+        </label>
 
+        <label className="flex flex-col">
+          Stroke Color
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => onColorChange(e.target.value)}
+          />
+        </label>
+      </div>
+
+      <div className="crop-mode flex flex-col">
+      <h3>crop mode</h3>
       <label>
         Crop Mode
         <input
@@ -40,7 +46,6 @@ export default function CanvasControls({
           onChange={(e) => setCrop(e.target.checked)}
         />
       </label>
-      <div>
       {shapeReady ? (
         <>
           <p>Shape is ready!</p>

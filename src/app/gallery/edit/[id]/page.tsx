@@ -50,6 +50,16 @@ export default function EditImagePage() {
   return (
     <main className="p-4">
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
+
+      <CanvasControls
+        strokeWidth={strokeWidth}
+        onStrokeChange={setStrokeWidth}
+        color={color}
+        onColorChange={setColor}
+        crop={crop}
+        setCrop={setCrop}
+        shapeReady={shapeReady}
+      />
       <div>
         {base64 && dimensions && (
           <Canvas 
@@ -62,15 +72,7 @@ export default function EditImagePage() {
             />
         )}
       </div>
-      <CanvasControls
-        strokeWidth={strokeWidth}
-        onStrokeChange={setStrokeWidth}
-        color={color}
-        onColorChange={setColor}
-        crop={crop}
-        setCrop={setCrop}
-        shapeReady={shapeReady}
-      />
+
     </main>
   );
 }

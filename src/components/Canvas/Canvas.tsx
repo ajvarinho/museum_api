@@ -89,10 +89,13 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
       ctx.moveTo(prev.x, prev.y);
       ctx.lineTo(offsetX, offsetY);
       ctx.stroke();
+      if(points.length > 4){
+        //ctx.clip();
+      }
     }
 
     //add crop calculation
-    if (points.length > 3) {
+    if (points.length > 4) {
       // TODO 1.
       onShapeReady(true);
       const bounds = points.reduce(
@@ -146,14 +149,14 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
         for (let x = bounds.minX; x <= bounds.maxX; x++) {
           if (isPointInside(x, y, points)) {
             const i = (y * bounds.maxY + x) * 4;
-            dst.data[i]     = src.data[i];
+            dst.data[i] = src.data[i];
             dst.data[i + 1] = src.data[i + 1];
             dst.data[i + 2] = src.data[i + 2];
             dst.data[i + 3] = 255;
           }
         }
       }
-
+      const myImageData = pointsCtx.createImageData(bounds.maxX - bounds.minX, bounds.maxY - bounds.minY);
       pointsCtx.putImageData(dst, 0, 0);
 
 

@@ -1,3 +1,8 @@
+.edit-controls {
+    display: block;
+    border: 1px solid white;
+}
+
 .btn {
     cursor: pointer;
     padding: 0.2rem 1rem;
