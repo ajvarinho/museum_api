@@ -89,16 +89,13 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
       ctx.moveTo(prev.x, prev.y);
       ctx.lineTo(offsetX, offsetY);
       ctx.stroke();
-      if(points.length > 4){
-        //ctx.clip();
-      }
     }
 
     //add crop calculation
     if (points.length > 4) {
       // TODO 1.
       onShapeReady(true);
-      const bounds = points.reduce(
+      const boundingBox = points.reduce(
         (acc, p) => ({
           minX: Math.min(acc.minX, p.x),
           maxX: Math.max(acc.maxX, p.x),
@@ -112,66 +109,48 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
           maxY: points[0].y,
         }
       );
-
-      console.log('cutout', bounds);
       
-      //const src = ctx.getImageData(0, 0, w, h);
       const cutoutPoints = [];
-      // TODO 2.
-      // for (let y = 0; y < dimensions.y; y++) {
-      //   for (let x = 0; x < dimensions.x; x++) {
-      //     if (isPointInside(x, y, points)) {
-      //           cutoutPoints.push({
-      //             x,
-      //             y,
-      //           });
-      //     }
-      //   }
-      // }
-      
-      for (let y = bounds.minY; y <= bounds.maxY; y++) {
-        for (let x = bounds.minX; x <= bounds.maxX; x++) {
+
+      for (let y = boundingBox.minY; y <= boundingBox.maxY; y++) {
+        for (let x = boundingBox.minX; x <= boundingBox.maxX; x++) {
           if (isPointInside(x, y, points)) {
             cutoutPoints.push({ x, y });
           }
         }
-      }
-      console.log('ctouts', cutoutPoints);
+      };
+      //
+      const boxWidth = boundingBox.maxX - boundingBox.minX + 1;
+      const boxHeight = boundingBox.maxY - boundingBox.minY + 1;
 
       const cropCanvas = cutoutRef.current!;
+      cropCanvas.width = boxWidth;
+      cropCanvas.height = boxHeight;
       const pointsCtx = cropCanvas.getContext("2d");
       if (!pointsCtx) return;
 
-      const src = ctx.getImageData(0, 0, bounds.maxX, bounds.maxY);
-      const dst = ctx.createImageData(bounds.maxX - bounds.minX, bounds.maxY - bounds.minY);
+      const cutoutSrc = ctx.getImageData(boundingBox.minX, boundingBox.minY, boxWidth, boxHeight);
+      const output = pointsCtx.createImageData(boxWidth, boxHeight);
 
-      for (let y = bounds.minY; y <= bounds.maxY; y++) {
-        for (let x = bounds.minX; x <= bounds.maxX; x++) {
-          if (isPointInside(x, y, points)) {
-            const i = (y * bounds.maxY + x) * 4;
-            dst.data[i] = src.data[i];
-            dst.data[i + 1] = src.data[i + 1];
-            dst.data[i + 2] = src.data[i + 2];
-            dst.data[i + 3] = 255;
-          }
-        }
-      }
-      const myImageData = pointsCtx.createImageData(bounds.maxX - bounds.minX, bounds.maxY - bounds.minY);
-      pointsCtx.putImageData(dst, 0, 0);
+      for (let y = boundingBox.minY; y <= boundingBox.maxY; y++) {
+        for (let x = boundingBox.minX; x <= boundingBox.maxX; x++) {
 
+          if (!isPointInside(x, y, points)) continue;
 
-      /**
-       * TODO - 
-       * 1. calculate leftmost and uppermost points of cutout / points arr for getImageData(sx, sy, sw, sh)
-       * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getImageData
-       * sx = leftmost
-       * sy = uppermost
-       * sw = rightmost ?
-       * sh = downmost ?
-       * 2. apply the isPointInside method to this area, to reduce loop
-       */
-    }
-  };
+          const localX = x - boundingBox.minX;
+          const localY = y - boundingBox.minY;
+
+          const i = (localY * boxWidth + localX) * 4;
+
+          output.data[i]     = cutoutSrc.data[i];
+          output.data[i + 1] = cutoutSrc.data[i + 1];
+          output.data[i + 2] = cutoutSrc.data[i + 2];
+          output.data[i + 3] = 255;
+        };
+      };
+      pointsCtx.putImageData(output, 0, 0);
+    };
+  }
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (mode === "draw") handleMouseDown_Draw(e);
