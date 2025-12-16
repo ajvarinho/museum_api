@@ -63,6 +63,8 @@ export interface CanvasControlsProps {
   crop: boolean;
   setCrop: (v: boolean) => void;
   shapeReady: boolean;
+  effects: boolean;
+  setEffects: (e: boolean) => void;
 };
 
 // canvas crop point type
@@ -70,4 +72,9 @@ export interface Point {
   x: number;
   y: number;
 };
+
+export interface ImageEffectsProps {
+  base64: string;
+  dimensions: { x: number; y: number };
+}
 

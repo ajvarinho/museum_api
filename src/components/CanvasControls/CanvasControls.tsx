@@ -8,7 +8,9 @@ export default function CanvasControls({
   onColorChange,
   crop,
   setCrop,
-  shapeReady
+  shapeReady,
+  effects,
+  setEffects
 }: CanvasControlsProps) {
 
   const saveImg = ()=> {
@@ -22,56 +24,68 @@ export default function CanvasControls({
   return (
     <div className="edit-controls">
 
-      <div className="draw-mode flex flex-col gap-1">
-        <h3>DRAW MODE</h3>
-        <div className="controls-wrap">
-          <label className="flex flex-col">
-            Stroke Weight: {strokeWidth}
-            <input
-              type="range"
-              min={1}
-              max={10}
-              value={strokeWidth}
-              onChange={(e) => onStrokeChange(Number(e.target.value))}
-            />
-          </label>
+        <div className="draw-mode flex flex-col gap-1">
+          <h3>DRAW MODE</h3>
+          <div className="controls-wrap">
+            <label className="flex flex-col">
+              Stroke Weight: {strokeWidth}
+              <input
+                type="range"
+                min={1}
+                max={10}
+                value={strokeWidth}
+                onChange={(e) => onStrokeChange(Number(e.target.value))}
+              />
+            </label>
 
-          <label className="flex flex-col">
-            Stroke Color
-            <input
-              type="color"
-              value={color}
-              onChange={(e) => onColorChange(e.target.value)}
-            />
-          </label>
+            <label className="flex flex-col">
+              Stroke Color
+              <input
+                type="color"
+                value={color}
+                onChange={(e) => onColorChange(e.target.value)}
+              />
+            </label>
+          </div>
+
         </div>
 
+        <div className="crop-mode flex flex-col">
+          <h3>CROP MODE</h3>
+
+          <div className="controls-wrap">
+            <label>
+              Crop Mode
+              <input
+                type="checkbox"
+                checked={crop}
+                onChange={(e) => setCrop(e.target.checked)}
+              />
+            </label>
+
+            {shapeReady ? (
+              <>
+                <p>Shape is ready</p>
+                <button className="btn" onClick={saveImg}>Save shape</button>
+                <button className="btn" onClick={removeImg}>Try again</button>
+              </>
+            ) : crop && (
+              <p>Please add at least 3 points to define the crop shape</p>
+            )}
+          </div>
       </div>
-
-      <div className="crop-mode flex flex-col">
-        <h3>CROP MODE</h3>
-
-        <div className="controls-wrap">
-          <label>
-            Crop Mode
-            <input
-              type="checkbox"
-              checked={crop}
-              onChange={(e) => setCrop(e.target.checked)}
-            />
-          </label>
-
-          {shapeReady ? (
-            <>
-              <p>Shape is ready</p>
-              <button className="btn" onClick={saveImg}>Save shape</button>
-              <button className="btn" onClick={removeImg}>Try again</button>
-            </>
-          ) : crop && (
-            <p>Please add at least 3 points to define the crop shape</p>
-          )}
+      <div className="effects-mode">
+        <div className="effects-wrap">
+            <label>
+              Effects
+              <input
+                type="checkbox"
+                checked={effects}
+                onChange={(e) => setEffects(e.target.checked)}
+              />
+            </label>
         </div>
-    </div>
+      </div>
     </div>
   );
 }

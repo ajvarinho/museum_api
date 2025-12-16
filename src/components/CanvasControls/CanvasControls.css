@@ -1,5 +1,7 @@
 .edit-controls {
-    display: block;
+    margin-top: 2rem;
+    display: flex;
+    justify-content:space-between;
     border: 1px solid white;
 }
 

@@ -5,6 +5,7 @@ import { toDataURL } from '../../../../services/fetch';
 import Canvas from "@/components/Canvas/Canvas";
 import Header from '@/components/Header/Header';
 import CanvasControls from '@/components/CanvasControls/CanvasControls';
+import ImageEffects from '@/components/ImageEffects/ImageEffects';
 
 
 export default function EditImagePage() {
@@ -18,6 +19,7 @@ export default function EditImagePage() {
   const [strokeWidth, setStrokeWidth] = useState(1);
   const [color, setColor] = useState("#000000ff");
   const [crop, setCrop] = useState(false);
+  const [effects, setEffects] = useState(false);
   //
   const [shapeReady, setShapeReady] = useState(false);
 
@@ -61,6 +63,8 @@ export default function EditImagePage() {
         onColorChange={setColor}
         crop={crop}
         setCrop={setCrop}
+        effects={effects}
+        setEffects={setEffects}
         shapeReady={shapeReady}
       />
       <div>
@@ -75,6 +79,13 @@ export default function EditImagePage() {
             />
         )}
       </div>
+      {base64 && effects && (
+        <div>
+          <p>alo bre</p>
+          <ImageEffects base64={base64} dimensions={dimensions}/>
+        </div>
+
+      )}
 
     </main>
     </>
