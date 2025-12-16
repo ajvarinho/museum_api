@@ -78,13 +78,13 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
 
     ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.arc(offsetX, offsetY, 3, 0, Math.PI * 2);
+    ctx.arc(offsetX, offsetY, 2, 0, Math.PI * 2);
     ctx.fill();
 
     if (points.length > 1) {
       const prev = points[points.length - 2];
       ctx.strokeStyle = "red";
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.moveTo(prev.x, prev.y);
       ctx.lineTo(offsetX, offsetY);

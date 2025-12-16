@@ -41,8 +41,9 @@ const Gallery: React.FC = () => {
             <div key={index} className="img-wrap">   
               <img key={img.id.toString()} src={img.srcSmall} alt={img.title}/>
               <Link href={`/gallery/edit/${img.id}`}>
-                <button>Edit</button>
+                <button className="btn">Edit</button>
               </Link>
+              <button className="btn">Remove from favorites</button>
             </div>
           ))}
         </div>
