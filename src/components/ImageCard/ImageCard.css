@@ -10,17 +10,44 @@
     flex-direction: column;
 }
 
-.overlay {
+    /* filter: url('#noise'); */
+
+.info-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgb(41, 2, 63);
-    filter: url('#noise');
+    background: var(--info-card-bg);
+    padding: 1rem;
+}
+
+
+.info-title {
+    font-size:var(--title);
+    color: rgb(251, 251, 251);
+    font-weight: 900;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.info-wrap {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+}
+
+.info-wrap > p {
+    font-style: italic;
 }
 
 figure > img {
     width: 100%;
+}
+
+figcaption {
+    color: black;
+    background-color: wheat;
+}
+
+figcaption:hover {
+    background-color: white;
 }
 
 .img-menu {
@@ -34,8 +61,10 @@ figure > img {
 .btn {
     cursor: pointer;
     padding: .2rem .5rem;
-    border: 1px solid;
-    background: pink;
+    background: white;
+    border: 1px solid black;
+    padding: .2rem .5rem;
+    color: black;
 }
 
 input[type="checkbox"]{

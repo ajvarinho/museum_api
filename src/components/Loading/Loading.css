@@ -1,3 +1,15 @@
+.loading-wrap {
+  position: relative;
+  border: 1rem solid white;
+  height: 50vh;
+  background: white;
+}
+
+.loaded {
+  height: 0;
+}
+
+
 .polyline {
   animation: draw 5s linear forwards;
 }

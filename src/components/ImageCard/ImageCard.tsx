@@ -33,17 +33,21 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
     setLarge(false);
   };
 
-  
-
-
   return (
     <div className="img-card flex flex-column gap-4">
 
         {overlay && 
-        <div className="overlay">
-          <button onClick={closeInfo}>X</button>  
-          <p>{image.title}</p>
-          <p>{image.author}</p>        
+        <div className="info-overlay">
+          <div className="btn-wrap text-right">
+            <button onClick={closeInfo}>X</button>  
+          </div>
+          <div className="info-wrap">
+            <h3 className="info-title">{image.title}</h3>
+            <p>Author: <strong>{image.author || 'Unknown'}</strong></p>
+            <p>Date: {image.date}</p>  
+            <p>Medium: {image.medium}</p>
+            <p>Department: {image.department}</p>
+          </div>
         </div>}
 
         {/* {large && 
@@ -62,7 +66,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
         <figure>
             <img
             loading="lazy"
-            id={image.id.toString()}
+            id={image.id ? image.id.toString():'no-image-found'}
             className="img-default"
             src={image.srcSmall} 
             alt={image.author + '' + image.title}

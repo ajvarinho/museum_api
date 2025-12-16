@@ -7,15 +7,13 @@ interface HeaderProps {
 
 
 const Header: React.FC<HeaderProps> = ({ isLoading }) => {
-    // accept message - loaded
-
     return(
         <header>
             <h1 className={'title' + (isLoading ? '' : ' loaded')}>
-                MUSEO
+                <Link href="/">MAIN</Link>
             </h1>
 
-            <Link href="/gallery">My gallery</Link>
+            <Link href="/gallery">MY GALLERY</Link>
         </header>
     )
 }

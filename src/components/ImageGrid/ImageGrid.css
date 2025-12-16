@@ -1,3 +1,5 @@
 .main-container {
     position: relative;
+    margin-top: 2rem;
+    background: var(--linear-bg-1);
 }

@@ -2,17 +2,17 @@ header {
     position: fixed;
     top: 0;
     height: fit-content;
-    padding: 2rem 1rem;
-    font-size: 2rem;
+    padding: var(--padding-small) var(--padding-medium);
+    font-size: var(--header);
     width: 100%;
     z-index: 5;
-    background: black;
+    background-color: rgba(18, 17, 17, 0.7);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.title {
+/* .title {
     font-size: 4rem;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     transition-duration: .7s;
@@ -20,4 +20,4 @@ header {
 
 .title.loaded {
     font-size: 2rem;
-}
+} */

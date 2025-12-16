@@ -8,6 +8,7 @@ export interface SearchAPIResponse {
 
 // Response from second fetch - specific image (/objects/:id)
 export interface imgResponse {
+  objectDate: undefined;
   objectID: number;
   title?: string;
   primaryImage?: string;
@@ -15,6 +16,8 @@ export interface imgResponse {
   artistDisplayName?: string;
   medium?: string;
   dimensions?: string;
+  date?: string;
+  department?: string
 };
 
 // Data format - image type fetched and saved
@@ -25,6 +28,9 @@ export interface ImageData {
   srcLarge?: string;
   author?: string;
   medium?: string;
+  dimensions?: string;
+  date?: string;
+  department?: string;
   favorites: boolean;
 };
 

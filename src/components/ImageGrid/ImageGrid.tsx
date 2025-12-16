@@ -1,4 +1,5 @@
 'use client';
+import '@/components/ImageGrid/ImageGrid.css';
 import { useState, useCallback } from "react";
 import { getImageData, getRandomUnique } from "../../services/fetch";
 import { ImageData } from "../../services/interfaces";

@@ -68,6 +68,9 @@ const FALLBACK_IMG = fallbackImg.src;
         srcLarge: data.primaryImage || undefined,
         author: data.artistDisplayName || undefined,
         medium: data.medium || undefined,
+        dimensions: data.dimensions || undefined,
+        date: data.objectDate || undefined,
+        department: data.department || undefined,
         favorites: false,
       };
 
