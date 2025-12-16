@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { CanvasProps } from '@/services/interfaces';
 import { polygonCenter, isPointInside } from '@/services/canvas';
 import { Point } from '@/services/interfaces';
+import '@/components/Canvas/Canvas.css';
 
 export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady }: CanvasProps)  {
 
@@ -180,7 +181,8 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
       <div className="cutout">
         <canvas ref={cutoutRef}
         width={500}
-        height={500}/>
+        height={500}
+        />
       </div>
     </>
   );

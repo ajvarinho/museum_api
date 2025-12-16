@@ -10,6 +10,15 @@ export default function CanvasControls({
   setCrop,
   shapeReady
 }: CanvasControlsProps) {
+
+  const saveImg = ()=> {
+    console.log('alo  save')
+  };
+
+  const removeImg = ()=> {
+    console.log('alo remove')
+  }
+
   return (
     <div className="edit-controls">
 
@@ -55,7 +64,8 @@ export default function CanvasControls({
           {shapeReady ? (
             <>
               <p>Shape is ready</p>
-              <button className="btn">Save shape</button>
+              <button className="btn" onClick={saveImg}>Save shape</button>
+              <button className="btn" onClick={removeImg}>Try again</button>
             </>
           ) : crop && (
             <p>Please add at least 3 points to define the crop shape</p>

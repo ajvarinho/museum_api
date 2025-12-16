@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { toDataURL } from '../../../../services/fetch';
 import Canvas from "@/components/Canvas/Canvas";
+import Header from '@/components/Header/Header';
 import CanvasControls from '@/components/CanvasControls/CanvasControls';
 
 
@@ -48,6 +49,8 @@ export default function EditImagePage() {
   }, [id]);
 
   return (
+    <>
+    <Header isLoading={false}></Header>
     <main className="p-4">
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
 
@@ -74,5 +77,6 @@ export default function EditImagePage() {
       </div>
 
     </main>
+    </>
   );
 }
