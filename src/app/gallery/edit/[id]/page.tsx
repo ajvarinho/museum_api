@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { toDataURL } from '../../../../services/fetch';
+import { EffectType } from '@/services/interfaces'
 import Canvas from "@/components/Canvas/Canvas";
 import Header from '@/components/Header/Header';
 import CanvasControls from '@/components/CanvasControls/CanvasControls';
@@ -22,6 +23,8 @@ export default function EditImagePage() {
   const [effects, setEffects] = useState(false);
   //
   const [shapeReady, setShapeReady] = useState(false);
+  
+ const [currentEffect, setCurrentEffect] = useState<EffectType>('none');
 
   /**
    * get image from localStorage and convert to base64
@@ -50,6 +53,10 @@ export default function EditImagePage() {
 
   }, [id]);
 
+  const handleEffectChange = (effect: EffectType) => {
+    setCurrentEffect(effect);
+  };
+
   return (
     <>
     <Header isLoading={false}></Header>
@@ -57,16 +64,18 @@ export default function EditImagePage() {
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
 
       <CanvasControls
-        strokeWidth={strokeWidth}
-        onStrokeChange={setStrokeWidth}
-        color={color}
-        onColorChange={setColor}
-        crop={crop}
-        setCrop={setCrop}
-        effects={effects}
-        setEffects={setEffects}
-        shapeReady={shapeReady}
-      />
+          strokeWidth={strokeWidth}
+          onStrokeChange={setStrokeWidth}
+          color={color}
+          onColorChange={setColor}
+          crop={crop}
+          setCrop={setCrop}
+          effects={effects}
+          setEffects={setEffects}
+          shapeReady={shapeReady}
+          onEffectChange={handleEffectChange} 
+          selectedEffect={currentEffect}      
+          />
       <div>
         {base64 && dimensions && (
           <Canvas 
@@ -82,7 +91,7 @@ export default function EditImagePage() {
       {base64 && effects && (
         <div>
           <p>alo bre</p>
-          <ImageEffects base64={base64} dimensions={dimensions}/>
+          <ImageEffects base64={base64} dimensions={dimensions} effect={currentEffect}/>
         </div>
 
       )}

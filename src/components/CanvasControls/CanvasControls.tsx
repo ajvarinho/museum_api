@@ -1,4 +1,5 @@
-import { CanvasControlsProps } from '@/services/interfaces';
+import { SetStateAction, useState } from "react";
+import { CanvasControlsProps, EffectType } from '@/services/interfaces';
 import '@/components/CanvasControls/CanvasControls.css';
 
 export default function CanvasControls({
@@ -13,6 +14,7 @@ export default function CanvasControls({
   setEffects
 }: CanvasControlsProps) {
 
+  const [selectedEffect, setSelectedEffect] = useState<EffectType>('none');
   const saveImg = ()=> {
     console.log('alo  save')
   };
@@ -20,6 +22,12 @@ export default function CanvasControls({
   const removeImg = ()=> {
     console.log('alo remove')
   }
+
+
+  const handleEffectSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const effect = e.target.value as EffectType;
+    setSelectedEffect(effect);
+  };
 
   return (
     <div className="edit-controls">
@@ -85,6 +93,17 @@ export default function CanvasControls({
               />
             </label>
         </div>
+        { effects && (
+          <div className="select-wrap">
+            <select value={selectedEffect} onChange={handleEffectSelect}>
+              <option value="none">Select effect</option>
+              <option value="grayscale">Grayscale</option>
+              <option value="turbulence">Turbulence</option>
+              <option value="blur">Blur</option>
+              <option value="saturate">Saturate</option>
+            </select>
+          </div>
+        )}
       </div>
     </div>
   );

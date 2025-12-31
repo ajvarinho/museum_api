@@ -1,17 +1,28 @@
+import { useRef, useEffect } from "react";
 import { ImageEffectsProps } from '@/services/interfaces';
 
-
 export default function ImageEffects({
-  base64, dimensions
+  base64, dimensions, effect
 }: ImageEffectsProps) {
 
     const img = base64;
+
+    const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    
+    console.log('selected effect:', effect);
+
+  }, [effect, base64]);
+
+      console.log('selected effect2:', effect);
 
 
   return (
     <div className="effects-wrap">
         <div style={{ height: 0 }}>
-            <svg>
+            <svg ref={svgRef}>
                 <defs>
                     <filter id="noise-basic" x="0%" y="0%" width="100%" height="100%">
                         <feTurbulence baseFrequency="0.001 0.24" result="NOISE" numOctaves="8" />
