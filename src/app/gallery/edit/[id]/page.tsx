@@ -54,6 +54,7 @@ export default function EditImagePage() {
   }, [id]);
 
   const handleEffectChange = (effect: EffectType) => {
+    console.log('Effect changed in parent:', effect);
     setCurrentEffect(effect);
   };
 
@@ -93,7 +94,6 @@ export default function EditImagePage() {
           <p>alo bre</p>
           <ImageEffects base64={base64} dimensions={dimensions} effect={currentEffect}/>
         </div>
-
       )}
 
     </main>

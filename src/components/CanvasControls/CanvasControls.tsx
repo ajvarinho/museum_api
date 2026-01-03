@@ -26,6 +26,7 @@ export default function CanvasControls({
 
   const handleEffectSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const effect = e.target.value as EffectType;
+    console.log('effects canvascontrosl', effect)
     setSelectedEffect(effect);
   };
 

@@ -9,14 +9,14 @@ export default function ImageEffects({
 
     const svgRef = useRef<SVGSVGElement>(null);
 
-  useEffect(() => {
-    if (!svgRef.current) return;
+      console.log('ImageEffects render - effect:', effect);
     
-    console.log('selected effect:', effect);
+    useEffect(() => {
+      if (!svgRef.current) return;
+      console.log('selected effect:', effect);
+    
 
   }, [effect, base64]);
-
-      console.log('selected effect2:', effect);
 
 
   return (
@@ -24,17 +24,47 @@ export default function ImageEffects({
         <div style={{ height: 0 }}>
             <svg ref={svgRef}>
                 <defs>
-                    <filter id="noise-basic" x="0%" y="0%" width="100%" height="100%">
+                    {/* <filter id="noise-basic" x="0%" y="0%" width="100%" height="100%">
                         <feTurbulence baseFrequency="0.001 0.24" result="NOISE" numOctaves="8" />
                         <feDisplacementMap in="SourceGraphic" in2="NOISE" scale="10" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
-                    </filter>
+                    </filter> */}
+                     {/* SVG filters will go here */}
+                    {effect === 'grayscale' && (
+                      <filter id="grayscale">
+                        <feColorMatrix type="saturate" values="0"/>
+                      </filter>
+                    )}
+                    
+                    {effect === 'turbulence' && (
+                      <filter id="turbulence">
+                        <feTurbulence 
+                          type="turbulence" 
+                          baseFrequency="0.05" 
+                          numOctaves="2"
+                        />
+                        <feDisplacementMap in="SourceGraphic" scale="20"/>
+                      </filter>
+                    )}
+                    
+                    {effect === 'blur' && (
+                      <filter id="blur">
+                        <feGaussianBlur stdDeviation="5"/>
+                      </filter>
+                    )}
+                    
+                    {effect === 'saturate' && (
+                      <filter id="saturate">
+                        <feColorMatrix type="saturate" values="2"/>
+                      </filter>
+                    )}
                 </defs>
 
             </svg>
         </div>
         <svg className="svg-wrapper" width={dimensions.x} height={dimensions.y} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1">
-            <image href={img} className="img" x="0" y="0" height="100%" width="100%" filter='url(#noise-basic)' />
+            <image href={img} className="img" x="0" y="0" height="100%" width="100%" filter={effect !== 'none' ? `url(#${effect})` : undefined} />
         </svg>
+        <p>{effect}</p>
     </div>
   );
 }
