@@ -96,17 +96,6 @@ export default function CanvasControls({
               />
             </label>
         </div>
-        { effects && (
-          <div className="select-wrap">
-            <select value={selectedEffect} onChange={handleEffectSelect}>
-              <option value="none">Select effect</option>
-              <option value="grayscale">Grayscale</option>
-              <option value="turbulence">Turbulence</option>
-              <option value="blur">Blur</option>
-              <option value="saturate">Saturate</option>
-            </select>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -167,7 +167,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
   };
 
   return (
-    <>
+    <div className='canvas-wrap'>
       <canvas
         ref={canvasRef}
         width={dimensions.x}
@@ -184,6 +184,6 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
         height={500}
         />
       </div>
-    </>
+    </div>
   );
 }

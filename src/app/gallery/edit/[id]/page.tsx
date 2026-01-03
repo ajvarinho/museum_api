@@ -77,25 +77,41 @@ export default function EditImagePage() {
           onEffectChange={handleEffectChange} 
           selectedEffect={currentEffect}      
           />
-      <div>
-        {base64 && dimensions && (
-          <Canvas 
-            base64={base64} 
-            dimensions={dimensions}   
-            strokeWidth={strokeWidth}
-            color={color}
-            mode={crop ? "crop" : "draw"}
-            onShapeReady={setShapeReady}
-            />
-        )}
-      </div>
-      {base64 && effects && (
-        <div>
-          <p>alo bre</p>
-          <ImageEffects base64={base64} dimensions={dimensions} effect={currentEffect}/>
-        </div>
-      )}
 
+      <div className="edit-wrap">
+        <div>
+          {base64 && dimensions && (
+            <Canvas 
+              base64={base64} 
+              dimensions={dimensions}   
+              strokeWidth={strokeWidth}
+              color={color}
+              mode={crop ? "crop" : "draw"}
+              onShapeReady={setShapeReady}
+              />
+          )}
+        </div>
+
+        {base64 && effects && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+                <button 
+                  className="modal-close" 
+                  onClick={() => setEffects(false)}
+                >
+                  ×
+                </button>
+                <ImageEffects 
+                  base64={base64} 
+                  dimensions={dimensions} 
+                  effect={currentEffect} 
+                  onEffectChange={handleEffectChange}
+                />
+            </div>
+          </div>
+        )}
+
+      </div>
     </main>
     </>
   );
