@@ -54,8 +54,13 @@ export default function EditImagePage() {
   }, [id]);
 
   const handleEffectChange = (effect: EffectType) => {
-    console.log('Effect changed in parent:', effect);
     setCurrentEffect(effect);
+  };
+
+  const handleApplyEffect = (newBase64: string) => {
+    setBase64(newBase64); 
+    setEffects(false); 
+    setCurrentEffect('none'); 
   };
 
   return (
@@ -106,6 +111,7 @@ export default function EditImagePage() {
                   dimensions={dimensions} 
                   effect={currentEffect} 
                   onEffectChange={handleEffectChange}
+                  onApplyEffect={handleApplyEffect}
                 />
             </div>
           </div>
