@@ -92,7 +92,7 @@ export default function EditImagePage() {
       {base64 && effects && (
         <div className="effects-wrap">
           <p>alo bre</p>
-          <ImageEffects base64={base64} dimensions={dimensions} effect={currentEffect}/>
+          <ImageEffects base64={base64} dimensions={dimensions} effect={currentEffect} onEffectChange={handleEffectChange}/>
         </div>
       )}
 

@@ -96,7 +96,7 @@ export default function CanvasControls({
               />
             </label>
         </div>
-        { effects && (
+        {/* { effects && (
           <div className="select-wrap">
             <select value={selectedEffect} onChange={handleEffectSelect}>
               <option value="none">Select effect</option>
@@ -106,7 +106,7 @@ export default function CanvasControls({
               <option value="saturate">Saturate</option>
             </select>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

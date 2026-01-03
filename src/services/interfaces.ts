@@ -80,6 +80,7 @@ export interface ImageEffectsProps {
   base64: string;
   dimensions: { x: number; y: number };
   effect: EffectType;
+   onEffectChange: (effect: EffectType) => void;
   //
 };
 
