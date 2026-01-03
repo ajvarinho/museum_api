@@ -11,7 +11,8 @@ export default function CanvasControls({
   setCrop,
   shapeReady,
   effects,
-  setEffects
+  setEffects,
+  onEffectChange
 }: CanvasControlsProps) {
 
   const [selectedEffect, setSelectedEffect] = useState<EffectType>('none');
@@ -28,6 +29,7 @@ export default function CanvasControls({
     const effect = e.target.value as EffectType;
     console.log('effects canvascontrosl', effect)
     setSelectedEffect(effect);
+    onEffectChange(effect);
   };
 
   return (
