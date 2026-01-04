@@ -96,6 +96,8 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     if (points.length > 4) {
       // TODO 1.
       onShapeReady(true);
+      //
+      setCropShape(true);
       const boundingBox = points.reduce(
         (acc, p) => ({
           minX: Math.min(acc.minX, p.x),
@@ -166,6 +168,33 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     if (mode === "draw") stopDrawing();
   };
 
+  const saveImage = ()=> {
+    if(!cutoutRef.current) return;
+    const cutout = cutoutRef.current;
+    const savedImg = cutout.toDataURL('image/png');
+    console.log('saved img', savedImg)
+  }
+
+  const tryAgain = () => {
+    if(!cutoutRef.current) return;
+    const pointsCtx = cutoutRef.current.getContext("2d");
+    pointsCtx!.clearRect(0, 0, cutoutRef.current.width, cutoutRef.current.height);
+    pointsRef.current.length = 0;
+    console.log('points array', pointsRef.current)
+    //
+    const canvas = canvasRef.current;
+    const ctx = canvas!.getContext("2d");
+    if (!ctx) return;
+
+    ctxRef.current = ctx;
+    const img = new Image();
+    img.src = base64;
+
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, canvas!.width, canvas!.height);
+    };
+  };
+
   return (
     <div className='canvas-wrap'>
       <canvas
@@ -183,6 +212,12 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
         width={500}
         height={500}
         />
+        {cropShape && (
+        <div>  
+          <button className="btn" onClick={saveImage}>Save shape</button>
+          <button className="btn" onClick={tryAgain}>Try again</button>
+        </div>
+        )}
       </div>
     </div>
   );

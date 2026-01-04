@@ -74,7 +74,7 @@ export default function CanvasControls({
               />
             </label>
 
-            {shapeReady ? (
+            {/* {shapeReady ? (
               <>
                 <p>Shape is ready</p>
                 <button className="btn" onClick={saveImg}>Save shape</button>
@@ -82,7 +82,7 @@ export default function CanvasControls({
               </>
             ) : crop && (
               <p>Please add at least 3 points to define the crop shape</p>
-            )}
+            )} */}
           </div>
       </div>
       <div className="effects-mode">
