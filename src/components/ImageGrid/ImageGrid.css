@@ -1,5 +1,29 @@
 .main-container {
+    width: fit-content;
     position: relative;
     margin-top: 4rem;
-    background: var(--linear-bg-1);
+    display: flex;
+    transform-style: preserve-3d;
+}
+
+.img-container {
+    position: relative;
+    display: flex;
+    scroll-behavior: smooth;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%; 
+    max-width: 100vw;
+    /**/
+    transform: rotateY(22deg);
+}
+
+.navigation {
+    position: fixed;
+    width: 95vw;
+    top: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 2rem;
+    z-index: 3;
 }

@@ -1,20 +1,24 @@
 'use client';
 import { useEffect, useRef } from "react";
+import { ScrollObserverProps } from '@/services/interfaces';
 
-interface ScrollObserverProps {
-  onVisible: () => void;
-  disabled?: boolean; 
-  rootMargin?: string;
-}
 
 const ScrollObserver: React.FC<ScrollObserverProps> = ({
   onVisible,
   disabled = false,
   rootMargin = "100px",
+  scrollContainer = null,
 }) => {
 
 
   const ref = useRef<HTMLDivElement | null>(null);
+
+  const style = {
+    width: '3em',
+    height: 'em',
+    background: 'red',
+    flexShrink: 0
+  };
 
   useEffect(() => {
     if (disabled || !ref.current) return;
@@ -27,7 +31,7 @@ const ScrollObserver: React.FC<ScrollObserverProps> = ({
         }
       },
       {
-        root: null, // viewport
+        root: scrollContainer,
         rootMargin,
         threshold: 0.1,
       }
@@ -40,7 +44,7 @@ const ScrollObserver: React.FC<ScrollObserverProps> = ({
     };
   }, [disabled, onVisible, rootMargin]);
 
-  return <div ref={ref} className="intersection w-full h-12"></div>;
+  return <div ref={ref} className="" style={style}></div>;
 };
 
 export default ScrollObserver;

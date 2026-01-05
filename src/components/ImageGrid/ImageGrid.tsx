@@ -1,6 +1,6 @@
 'use client';
 import '@/components/ImageGrid/ImageGrid.css';
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { getImageData, getRandomUnique } from "../../services/fetch";
 import { ImageData } from "../../services/interfaces";
 import ImgCard from "../ImageCard/ImageCard";
@@ -12,8 +12,10 @@ interface GalleryGridProps {
 
 const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
+  const imgContainer = useRef<HTMLDivElement | null>(null);
   const [images, setImages] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
+
 
   const loadImages = useCallback(async () => {
     if (objectIds.length === 0 || loading) return;
@@ -44,22 +46,38 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     }
   };
 
+  const scrollLeft = ()=>{
+    const container = imgContainer.current;
+    if (!container) return;
+    container.scrollLeft -= 200;
+  };
+
+  const scrollRight = ()=>{
+    const container = imgContainer.current;
+    if (!container) return;
+    container.scrollLeft += 200;
+  };
+
 
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-8 main-container">
+    <div className="main-container">
+        <div className="navigation">
+          <button className="btn" onClick={scrollLeft}>left</button>
+          <button className="btn" onClick={scrollRight}>right</button>
+        </div>
+      <div className="img-container" ref={imgContainer}>
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
             <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} />
           </div>
         ))}
+        <Observer onVisible={loadImages} disabled={loading} />
       </div>
 
       {loading && (
         <p className="text-center py-4 opacity-50">Loading more images...</p>
       )}
 
-      <Observer onVisible={loadImages} disabled={loading} />
     </div>
   );
 };

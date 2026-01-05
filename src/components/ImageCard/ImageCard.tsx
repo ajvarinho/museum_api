@@ -11,6 +11,8 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
   const [overlay, setOverlay] = useState(false);
   const [large, setLarge] = useState(false);
 
+  const [active, setActive] = useState(false);
+
   //
   const [checked, setChecked] = useState(false);
 
@@ -32,6 +34,10 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
   const closeLarge = () => {
     setLarge(false);
   };
+
+  const activeCard = ()=> {
+    setActive(true);
+  }
 
   return (
     <div className="img-card flex flex-column gap-4">

@@ -44,6 +44,13 @@ export interface entry {
   isIntersecting: boolean;
 };
 
+export interface ScrollObserverProps {
+  onVisible: () => void;
+  disabled?: boolean; 
+  rootMargin?: string;
+  scrollContainer?: HTMLElement | null;
+}
+
 // canvas props
 
 export interface CanvasProps {

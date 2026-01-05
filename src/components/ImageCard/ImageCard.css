@@ -2,6 +2,12 @@
     position: relative;
     transition-duration: 0.3s;
     display: inline-block;
+    /**/
+    transform: scale(0.7);
+}
+
+.img-wrap.active {
+    transform: scale(1.2);
 }
 
 .img-card {
@@ -17,6 +23,7 @@
     inset: 0;
     background: var(--info-card-bg);
     padding: 1rem;
+    overflow: scroll;
 }
 
 .info-title {
