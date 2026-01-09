@@ -62,8 +62,8 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
   return (
     <div className="main-container">
         <div className="navigation">
-          <button className="btn" onClick={scrollLeft}>left</button>
-          <button className="btn" onClick={scrollRight}>right</button>
+          <button className="btn nav-btn" onClick={scrollLeft}>left</button>
+          <button className="btn nav-btn" onClick={scrollRight}>right</button>
         </div>
       <div className="img-container" ref={imgContainer}>
         {images.map((img) => (

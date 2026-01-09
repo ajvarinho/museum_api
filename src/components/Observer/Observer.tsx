@@ -15,7 +15,7 @@ const ScrollObserver: React.FC<ScrollObserverProps> = ({
 
   const style = {
     width: '3em',
-    height: 'em',
+    height: '3em',
     background: 'red',
     flexShrink: 0
   };

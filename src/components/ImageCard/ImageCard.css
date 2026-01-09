@@ -3,12 +3,10 @@
     transition-duration: 0.3s;
     display: inline-block;
     /**/
-    transform: scale(0.7);
+    /* transform: scale(0.7); */
 }
 
-.img-wrap.active {
-    transform: scale(1.2);
-}
+
 
 .img-card {
     display: flex;
