@@ -2,7 +2,7 @@
     height: 90vh;
     width: fit-content;
     position: relative;
-    margin-top: 6rem;
+    margin-top: 2rem;
     display: flex;
     padding-inline-start: 2em;
 }
@@ -19,15 +19,15 @@
     align-items: flex-start;
 }
 
-.img-container >*:active {
+/* .img-container >*:active {
     transform: scale(1.2);
     flex-grow: 12;
     border: 3px solid white;
-}
+} */
 
 .navigation {
     position: fixed;
-    width: 95vw;
+    width: 85vw;
     top: 80%;
     display: flex;
     justify-content: space-between;

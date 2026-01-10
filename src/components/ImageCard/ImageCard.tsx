@@ -1,5 +1,6 @@
 import Image from "next/image";
 import './ImageCard.css';
+import info from '../../../public/icons/info.svg';
 import { useRef, useState, useEffect } from "react";
 import { ImgCardProps } from '../../services/interfaces';
 
@@ -40,12 +41,17 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
   }
 
   return (
-    <div className="img-card flex flex-column gap-4">
+    <div className="img-card flex flex-column">
 
         {overlay && 
         <div className="info-overlay">
           <div className="btn-wrap text-right">
-            <button onClick={closeInfo}>X</button>  
+            <button onClick={closeInfo}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24">
+                <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+                <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+              </svg>  
+            </button>  
           </div>
           <div className="info-wrap">
             <h3 className="info-title">{image.title}</h3>
@@ -55,6 +61,9 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
             <p>Department: {image.department}</p>
           </div>
         </div>}
+
+
+
 
         {/* {large && 
         <div className="large">
@@ -81,16 +90,30 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
         </figure>
 
         <div className="img-menu flex flex-row justify-around">
-            <button className="info btn" onClick={openInfo}>Info</button>
-            <button className="large btn" onClick={openLarge}>See large</button>
+            <button className="info btn" onClick={openInfo}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24">
+                <circle cx="13" cy="12" r="10" stroke="black" fill="transparent" strokeWidth="2"/>
+                <circle cx="13" cy="7" r="1" stroke="black" fill="black" strokeWidth="1"/>
+                <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+              </svg>
+            </button>
+            <button className="large btn" onClick={openLarge}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24" className="">
+                <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+                <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+              </svg>
+            </button>
             <div className="fav-wrap btn">
-              <label htmlFor="save">
-                Add to favorites
+              <label htmlFor={`save-${image.id}`}>
                 <input
+                  id={`save-${image.id}`}
                   type="checkbox"
                   checked={image.favorites}
                   onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
                 />
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+                  <polyline className="save" points="0,0 0,24 12,20 24,24 24,0 0,0"  stroke="black" />
+                </svg>
               </label>
             </div>
         </div>

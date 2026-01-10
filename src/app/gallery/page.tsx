@@ -34,7 +34,7 @@ const Gallery: React.FC = () => {
     <>
       <Header isLoading={loading}></Header>
       <main>
-        <div className={'columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 main-container'}>
+        <div className={'columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4'}>
             <p>alo</p>
             {favorites.map((img, index) => (
 
