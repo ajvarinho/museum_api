@@ -12,7 +12,6 @@ interface GalleryGridProps {
 
 const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
-  const imgContainer = useRef<HTMLDivElement | null>(null);
   const [images, setImages] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -46,26 +45,9 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     }
   };
 
-  const scrollLeft = ()=>{
-    const container = imgContainer.current;
-    if (!container) return;
-    container.scrollLeft -= 200;
-  };
-
-  const scrollRight = ()=>{
-    const container = imgContainer.current;
-    if (!container) return;
-    container.scrollLeft += 200;
-  };
-
-
   return (
     <div className="main-container">
-        <div className="navigation">
-          <button className="btn nav-btn" onClick={scrollLeft}>left</button>
-          <button className="btn nav-btn" onClick={scrollRight}>right</button>
-        </div>
-      <div className="img-container" ref={imgContainer}>
+      <div className="img-container">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
             <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} />

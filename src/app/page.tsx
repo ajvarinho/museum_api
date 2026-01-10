@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="">
       <SVGFilters></SVGFilters>
-      <main className="main perspective">
+      <main className="main">
         {/* <Loading isLoading={loading}></Loading> */}
         <ImageGrid objectIds={objectIds}></ImageGrid>
       </main>

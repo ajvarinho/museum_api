@@ -91,16 +91,20 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
 
         <div className="img-menu flex flex-row justify-around">
             <button className="info btn" onClick={openInfo}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle cx="13" cy="12" r="10" stroke="black" fill="transparent" strokeWidth="2"/>
                 <circle cx="13" cy="7" r="1" stroke="black" fill="black" strokeWidth="1"/>
                 <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
               </svg>
             </button>
             <button className="large btn" onClick={openLarge}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24" className="">
-                <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
-                <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
+                <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
+                <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
+                <polyline className="save" points="0,9 0,0 9,0" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                <polyline className="save" points="15,0 24,0 24,9" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                <polyline className="save" points="0,15 0,24 9,24" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                <polyline className="save" points="15,24 24,24 24,15" strokeLinecap="round" strokeWidth="2" stroke="black" />
               </svg>
             </button>
             <div className="fav-wrap btn">
@@ -111,8 +115,8 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
                   checked={image.favorites}
                   onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
                 />
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
-                  <polyline className="save" points="0,0 0,24 12,20 24,24 24,0 0,0"  stroke="black" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <polyline className="save" points="0,0 0,24 12,20 24,24 24,0 0,0" strokeWidth="2" stroke="black" />
                 </svg>
               </label>
             </div>
