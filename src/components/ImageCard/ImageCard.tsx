@@ -62,9 +62,6 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
           </div>
         </div>}
 
-
-
-
         {/* {large && 
         <div className="large">
           <button onClick={closeLarge}>X</button>

@@ -45,6 +45,7 @@
 
 figure {
     border: 12px solid white;
+
 }
 
 figure > img {
@@ -52,15 +53,26 @@ figure > img {
 }
 
 figcaption {
+    max-height: 0;
     color: black;
+    /* interpolate-size: allow-keywords; */
+    opacity: 0;
+    transition-duration: 0.7s;
+}
+
+figure:hover > figcaption {
+    max-height: 100vh;
+    opacity: 1;
     background-color: wheat;
 }
+
 
 figcaption:hover {
     background-color: white;
 }
 
 .img-menu {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -69,6 +81,7 @@ figcaption:hover {
 }
 
 .btn {
+    position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -76,6 +89,24 @@ figcaption:hover {
   border: 1px solid black;
   background: white;
   cursor: pointer;
+  z-index: 3;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    height: 2.5rem;
+    width: 2.5rem;
+    background: linear-gradient(45deg, rgb(236, 236, 236), rgb(174, 245, 174));
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.1);
+    transition-duration: 0.7s;
+}
+
+.btn:hover::before {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .btn svg {
