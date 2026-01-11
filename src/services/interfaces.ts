@@ -1,3 +1,12 @@
+import { ReactNode } from 'react';
+
+export interface ButtonProps {
+  children: ReactNode;
+  onClick?: () => void;
+  className?: string;
+}
+
+
 //Define API response types
 
 // Response from first fetch - object IDs

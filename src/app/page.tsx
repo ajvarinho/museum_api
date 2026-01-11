@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { getData } from "../services/fetch";
 //import { ImageData } from "../../services/interfaces";
 import Nav from '../components/Nav/Nav';
-import NavBtn from '@/components/Buttons/NavBtn';
+import Button from '@/components/Buttons/Button';
 import ImageGrid from '../components/ImageGrid/ImageGrid';
 import SVGFilters from '../components/FilterTest/SVGFilters';
 import Loading from '../components/Loading/Loading';
@@ -23,11 +23,15 @@ export default function Home() {
     fetchIds();
   }, []);
 
+  const openNav = ()=> {
+    console.log('cloicked')
+  }
+
   return (
     <div className="">
       <SVGFilters></SVGFilters>
       <main className="main">
-        <NavBtn></NavBtn>
+        <Button onClick={openNav}>=alo=</Button>
         {/* <Loading isLoading={loading}></Loading> */}
         <ImageGrid objectIds={objectIds}></ImageGrid>
       </main>
