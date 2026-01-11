@@ -1,4 +1,4 @@
-import './Header.css';
+import './Nav.css';
 import Link from 'next/link';
 
 interface HeaderProps {
@@ -6,13 +6,13 @@ interface HeaderProps {
 }
 
 
-const Header: React.FC<HeaderProps> = ({ isLoading }) => {
+const Nav: React.FC<HeaderProps> = ({ isLoading }) => {
     return(
-        <header className={'title' + (isLoading ? '' : ' loaded')}>
+        <nav className={'title' + (isLoading ? '' : ' loaded')}>
             <Link href="/">MAIN</Link>
             <Link href="/gallery">MY GALLERY</Link>
-        </header>
+        </nav>
     )
 }
 
-export default Header;
+export default Nav;

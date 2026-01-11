@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useState, useCallback } from "react";
-
 import { getData } from "../services/fetch";
 //import { ImageData } from "../../services/interfaces";
-import Header from '../components/Header/Header';
+import Nav from '../components/Nav/Nav';
+import NavBtn from '@/components/Buttons/NavBtn';
 import ImageGrid from '../components/ImageGrid/ImageGrid';
 import SVGFilters from '../components/FilterTest/SVGFilters';
 import Loading from '../components/Loading/Loading';
@@ -27,10 +27,11 @@ export default function Home() {
     <div className="">
       <SVGFilters></SVGFilters>
       <main className="main">
+        <NavBtn></NavBtn>
         {/* <Loading isLoading={loading}></Loading> */}
         <ImageGrid objectIds={objectIds}></ImageGrid>
       </main>
-      <Header isLoading={loading}></Header>
+      <Nav isLoading={loading}></Nav>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import { toDataURL } from '../../../../services/fetch';
 import { EffectType } from '@/services/interfaces'
 import Canvas from "@/components/Canvas/Canvas";
-import Header from '@/components/Header/Header';
+import Nav from '@/components/Nav/Nav';
 import CanvasControls from '@/components/CanvasControls/CanvasControls';
 import ImageEffects from '@/components/ImageEffects/ImageEffects';
 
@@ -65,7 +65,7 @@ export default function EditImagePage() {
 
   return (
     <>
-    <Header isLoading={false}></Header>
+    <Nav isLoading={false}></Nav>
     <main className="p-4">
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
 

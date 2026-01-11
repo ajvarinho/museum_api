@@ -17,6 +17,7 @@
     width: 100%; 
     max-width: 100vw;
     align-items: flex-start;
+    padding-inline-start: 4em;
 }
 
 /* .img-container >*:active {
@@ -25,26 +26,7 @@
     border: 3px solid white;
 } */
 
-.navigation {
-    position: fixed;
-    width: 85vw;
-    top: 80%;
-    display: flex;
-    justify-content: space-between;
-    padding-inline-start: 2rem;
-    z-index: 3;
-}
 
-.nav-btn {
-    padding: .2rem 1rem;
-}
 
-.nav-btn:first-child {
-    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
-} 
 
-.nav-btn:last-child {
-    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0 52%, 0 0);
-    
-} 
 
