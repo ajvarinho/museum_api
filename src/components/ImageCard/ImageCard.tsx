@@ -43,6 +43,10 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
   return (
     <div className="img-card flex flex-column">
 
+        <div className="filter-wrap">
+          <button className="filter">{image.department}</button>
+        </div>
+
         {overlay && 
         <div className="info-overlay">
           <div className="btn-wrap text-right">
@@ -87,36 +91,50 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
         </figure>
 
         <div className="img-menu flex flex-row justify-around">
-            <button className="info btn" onClick={openInfo}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle cx="13" cy="12" r="10" stroke="black" fill="transparent" strokeWidth="2"/>
-                <circle cx="13" cy="7" r="1" stroke="black" fill="black" strokeWidth="1"/>
-                <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
-              </svg>
-            </button>
-            <button className="large btn" onClick={openLarge}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
-                <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
-                <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
-                <polyline className="save" points="0,9 0,0 9,0" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                <polyline className="save" points="15,0 24,0 24,9" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                <polyline className="save" points="0,15 0,24 9,24" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                <polyline className="save" points="15,24 24,24 24,15" strokeLinecap="round" strokeWidth="2" stroke="black" />
-              </svg>
-            </button>
-            <div className="fav-wrap btn">
-              <label htmlFor={`save-${image.id}`}>
-                <input
-                  id={`save-${image.id}`}
-                  type="checkbox"
-                  checked={image.favorites}
-                  onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
-                />
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <polyline className="save" points="0,0 0,24 12,20 24,24 24,0 0,0" strokeWidth="2" stroke="black" />
-                </svg>
-              </label>
+
+            <div className="info-wrap">
+              <h4 className="info-title">{image.title}</h4>
+              <p>Author: <strong>{image.author || 'Unknown'}</strong></p>
+              <p>Date: {image.date}</p>  
             </div>
+
+            <div className="btn-wrap">
+              <button className="info btn" onClick={openInfo}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle cx="13" cy="12" r="10" stroke="black" fill="transparent" strokeWidth="2"/>
+                  <circle cx="13" cy="7" r="1" stroke="black" fill="black" strokeWidth="1"/>
+                  <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+                </svg>
+              </button>
+              <button className="large btn" onClick={openLarge}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
+                  <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
+                  <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
+                  <polyline className="save" points="0,9 0,0 9,0" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                  <polyline className="save" points="15,0 24,0 24,9" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                  <polyline className="save" points="0,15 0,24 9,24" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                  <polyline className="save" points="15,24 24,24 24,15" strokeLinecap="round" strokeWidth="2" stroke="black" />
+                </svg>
+              </button>
+
+              <div className="fav-wrap btn">
+                <label htmlFor={`save-${image.id}`}>
+                  <input
+                    id={`save-${image.id}`}
+                    type="checkbox"
+                    checked={image.favorites}
+                    onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
+                  />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <polyline className="save" points="0,0 0,24 12,20 24,24 24,0 0,0" strokeWidth="2" stroke="black" />
+                  </svg>
+                </label>
+              </div>
+
+            </div>
+
+
+
         </div>
     </div>
   );

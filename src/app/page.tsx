@@ -26,11 +26,11 @@ export default function Home() {
   return (
     <div className="">
       <SVGFilters></SVGFilters>
+      <Header isLoading={loading}></Header>
       <main className="main">
         {/* <Loading isLoading={loading}></Loading> */}
         <ImageGrid objectIds={objectIds}></ImageGrid>
       </main>
-      <Header isLoading={loading}></Header>
     </div>
   );
 }

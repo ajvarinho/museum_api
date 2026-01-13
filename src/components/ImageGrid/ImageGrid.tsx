@@ -28,6 +28,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     setLoading(false);
   }, [objectIds, loading]);
 
+
   const handleToggleFavorite = (id: number, checked: boolean) => {
 
     setImages((prev) =>
@@ -47,7 +48,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
   return (
     <div className="main-container">
-      <div className="img-container">
+      <div className="img-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
             <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} />
