@@ -31,8 +31,8 @@ export default function Home() {
         <div className="welcome-card flex justify-center">
           <p className="welcome-text">
             Welcome to <a href="https://www.metmuseum.org/" target="_blank">Metropolitan Museum&apos;s</a><br></br>
-            open API page. <br></br> 
-            Here you can explore the works from Met, add images of works to collection and edit images by cropping or adding effects.
+            open access API page. <br></br> 
+            Here you can explore the works from Met, add images of works to your collection and edit them.
           </p>
         </div>
         {/* <Loading isLoading={loading}></Loading> */}

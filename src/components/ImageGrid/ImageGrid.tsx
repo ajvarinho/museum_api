@@ -48,6 +48,9 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
   return (
     <div className="main-container">
+      <div className="department">
+        <p>Current department:</p>
+      </div>
       <div className="img-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
@@ -56,11 +59,6 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
         ))}
         <Observer onVisible={loadImages} disabled={loading} />
       </div>
-
-      {/* {loading && (
-        <p className="text-center py-4 opacity-50">Loading more images...</p>
-      )} */}
-
     </div>
   );
 };

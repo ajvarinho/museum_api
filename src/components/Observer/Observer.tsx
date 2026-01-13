@@ -44,7 +44,7 @@ const ScrollObserver: React.FC<ScrollObserverProps> = ({
     };
   }, [disabled, onVisible, rootMargin]);
 
-  return <div ref={ref} className="" style={style}></div>;
+  return <div ref={ref} className="observer" style={style}></div>;
 };
 
 export default ScrollObserver;

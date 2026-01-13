@@ -16,7 +16,7 @@
   --padding-small: 0.5rem;
 
   /**/
-  --info-card-bg: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgb(122, 110, 110));
+  --info-card-bg: linear-gradient(45deg, rgba(0, 0, 0, 0.825), rgb(74, 73, 73));
   --linear-bg-1: linear-gradient(60deg, rgba(255, 255, 255, 0.7), rgb(255, 255, 255));
 }
 

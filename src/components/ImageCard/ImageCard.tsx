@@ -49,35 +49,37 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
 
         {overlay && 
         <div className="info-overlay">
-          <div className="btn-wrap text-right">
+          <div className="close-wrap">
             <button onClick={closeInfo}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24">
-                <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
-                <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="2"/>
+                <line x1="0" x2="24" y1="0" y2="24" stroke="white" strokeLinecap="round" strokeWidth="2"/>
+                <line x1="24" x2="0" y1="0" y2="24" stroke="white" strokeLinecap="round" strokeWidth="2"/>
               </svg>  
             </button>  
           </div>
-          <div className="info-wrap">
-            <h3 className="info-title">{image.title}</h3>
-            <p>Author: <strong>{image.author || 'Unknown'}</strong></p>
+          <div className="overlay-wrap">
+            <h3 className="overlay-title">{image.title}</h3>
+            <p>Author: {image.author || 'Unknown'}</p>
             <p>Date: {image.date}</p>  
             <p>Medium: {image.medium}</p>
             <p>Department: {image.department}</p>
           </div>
         </div>}
 
-        {/* {large && 
-        <div className="large">
-          <button onClick={closeLarge}>X</button>
-            <img
-            id={image.id}
-            className="img-default"
-            src={image.srcLarge} 
-            alt={image.author + '' + image.title}
-            /> 
-          <p>{image.title}</p>
-          <p>{image.author}</p>        
-        </div>} */}
+        {large && 
+          <div className="modal-overlay large">
+            <button onClick={closeLarge}>X</button>
+            <div className="modal-content">
+              <img
+              loading="lazy"
+              id={image.id ? image.id.toString():'no-image-found'}
+              className="img-default"
+              src={image.srcLarge} 
+              alt={image.author + '' + image.title}
+              />
+            </div>
+          </div>
+        }
 
         <figure>
             <img
