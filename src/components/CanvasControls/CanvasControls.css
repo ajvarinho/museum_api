@@ -11,6 +11,11 @@
     border: 1px solid white;
 }
 
+.controls-wrap > input {
+    height: 1rem;
+    width: 1rem;
+}
+
 option {
     color: black;
 }

@@ -5,10 +5,11 @@ header {
     opacity: 0;
     padding: var(--padding-small) var(--padding-medium);
     font-size: 1.5rem;
-    font-family:'Courier New', Courier, monospace;
+    font-family: var(--font-montserrat);
+    color: white;
     width: 100%;
     z-index: 5;
-    background-color: rgba(18, 17, 17, 0.7);
+    background-color: rgba(75, 77, 71, 0.807);
     display: flex;
     flex-direction: row;
     justify-content: space-between;

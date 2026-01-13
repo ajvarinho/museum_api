@@ -61,6 +61,19 @@ export default function CanvasControls({
 
         </div>
 
+        <div className="effects-mode">
+          <div className="effects-wrap">
+              <label>
+                Effects
+                <input
+                  type="checkbox"
+                  checked={effects}
+                  onChange={(e) => setEffects(e.target.checked)}
+                />
+              </label>
+          </div>
+        </div>
+
         <div className="crop-mode flex flex-col">
           <h3>CROP MODE</h3>
 
@@ -85,18 +98,7 @@ export default function CanvasControls({
             )} */}
           </div>
       </div>
-      <div className="effects-mode">
-        <div className="effects-wrap">
-            <label>
-              Effects
-              <input
-                type="checkbox"
-                checked={effects}
-                onChange={(e) => setEffects(e.target.checked)}
-              />
-            </label>
-        </div>
-      </div>
+
     </div>
   );
 }

@@ -94,8 +94,8 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
 
             <div className="info-wrap">
               <h4 className="info-title">{image.title}</h4>
-              <p>Author: <strong>{image.author || 'Unknown'}</strong></p>
-              <p>Date: {image.date}</p>  
+              <p>{image.author || 'Unknown author'}</p>
+              <p>{image.date}</p>  
             </div>
 
             <div className="btn-wrap">
@@ -123,6 +123,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
                     id={`save-${image.id}`}
                     type="checkbox"
                     checked={image.favorites}
+                    className="fav-input"
                     onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
                   />
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

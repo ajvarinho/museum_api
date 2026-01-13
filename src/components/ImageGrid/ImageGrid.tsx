@@ -57,9 +57,9 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
         <Observer onVisible={loadImages} disabled={loading} />
       </div>
 
-      {loading && (
+      {/* {loading && (
         <p className="text-center py-4 opacity-50">Loading more images...</p>
-      )}
+      )} */}
 
     </div>
   );

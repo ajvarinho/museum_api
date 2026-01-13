@@ -28,6 +28,7 @@ export default function Home() {
       <SVGFilters></SVGFilters>
       <Header isLoading={loading}></Header>
       <main className="main">
+        <h2> whelocme to metropolitan</h2>
         {/* <Loading isLoading={loading}></Loading> */}
         <ImageGrid objectIds={objectIds}></ImageGrid>
       </main>

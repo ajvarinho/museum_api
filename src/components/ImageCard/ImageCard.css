@@ -4,7 +4,7 @@
     display: inline-block;
     min-height: 70vh;
     border: 1px solid black;
-    padding: 1em;
+    padding: 1em 2em;
 }
 
 .img-card {
@@ -14,7 +14,7 @@
 }
 
 .filter-wrap {
-    padding: 0.2rem 0;
+    padding: 0 0 0.5rem 0;
     width: 100%;
     text-align: right;
 }
@@ -43,14 +43,21 @@
 .info-title {
     font-size: 1.2rem;
     color: rgb(0, 0, 0);
-    font-weight: 900;
+    font-weight: 700;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0 0.5rem 0.2rem 0;
 }
 
 .info-wrap {
     display: flex;
     flex-direction: column;
 }
+
+.info-wrap p {
+    font-style: italic;
+    color: grey;
+}
+
 
 figure {
     border: 1px solid;
@@ -82,6 +89,7 @@ figcaption {
     flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
+    margin-top: 0.5rem;
 }
 
 .btn-wrap {
@@ -133,7 +141,7 @@ label:has(input[type="checkbox"]:checked) .save {
   fill: black;
 }
 
-input[type="checkbox"]{
+.fav-input{
     height: 0;
     width: 0;
     position: absolute;
