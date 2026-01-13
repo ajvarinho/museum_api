@@ -28,7 +28,13 @@ export default function Home() {
       <SVGFilters></SVGFilters>
       <Header isLoading={loading}></Header>
       <main className="main">
-        <h2> whelocme to metropolitan</h2>
+        <div className="welcome-card flex justify-center">
+          <p className="welcome-text">
+            Welcome to <a href="https://www.metmuseum.org/" target="_blank">Metropolitan Museum&apos;s</a><br></br>
+            open API page. <br></br> 
+            Here you can explore the works from Met, add images of works to collection and edit images by cropping or adding effects.
+          </p>
+        </div>
         {/* <Loading isLoading={loading}></Loading> */}
         <ImageGrid objectIds={objectIds}></ImageGrid>
       </main>

@@ -44,6 +44,23 @@ body {
   perspective: 10rem;
 } */
 
+.welcome-card {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-card a {
+  color: rgb(34, 53, 255);
+  text-decoration: underline;
+}
+
+.welcome-text {
+  text-align: center;
+  padding: 0 2rem;
+}
+
 .edit-wrap {
   position: relative;
 }
