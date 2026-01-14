@@ -55,7 +55,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
             src={image.srcSmall} 
             alt={image.author + '' + image.title}
             />
-            <figcaption className="text-center">{image.title}</figcaption>
+            <figcaption>{image.title}</figcaption>
         </figure>
 
         <div className="img-menu flex flex-row justify-around">

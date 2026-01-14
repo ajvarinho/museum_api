@@ -30,3 +30,9 @@ header.loaded {
 .title.loaded {
     font-size: 2rem;
 } */
+
+@media (max-width: 498px){
+    header {
+        font-size: 1rem;
+    }
+}

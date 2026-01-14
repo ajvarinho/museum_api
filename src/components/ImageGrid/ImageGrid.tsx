@@ -17,6 +17,8 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalImage, setModalImage] = useState<ImageData | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [scrollTop, setScrollTop] = useState<number>();
 
 
   const loadImages = useCallback(async () => {
@@ -40,7 +42,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
       )
     );
 
-    const image = images.find((img) => img.id === id);
+  const image = images.find((img) => img.id === id);
     if (!image) return;
     if (checked) {
       localStorage.setItem(id.toString(), JSON.stringify(image));
@@ -54,11 +56,18 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     if (!image) return;
     setModalImage(image);
     setOpenModal(true);
-}
+  }
+
+  const scrollFn = ()=>{
+    if (!containerRef.current) return;
+    const scrollVal = Math.floor(containerRef.current.scrollTop);
+    setScrollTop(scrollVal);
+  }
+
 
   return (
     <>
-    <div className="main-container">
+    <div className="main-container" ref={containerRef} onScroll={scrollFn}>
       <div className="department">
         <p>Current department:</p>
       </div>
@@ -71,7 +80,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
         <Observer onVisible={loadImages} disabled={loading} />
       </div>
     </div>
-    <Modal currentImg={modalImage} isOpen={openModal}></Modal>
+    <Modal currentImg={modalImage} isOpen={openModal} onClose={() => setOpenModal(false)}></Modal>
     </>
   );
 };
