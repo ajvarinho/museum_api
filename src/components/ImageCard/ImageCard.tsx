@@ -1,24 +1,12 @@
-import Image from "next/image";
 import './ImageCard.css';
-import info from '../../../public/icons/info.svg';
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import { ImgCardProps } from '../../services/interfaces';
 
-const FAVOURITES_STORE_KEY = 'favorite_images';
+const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) => {
 
-const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
-
-  const [favorite, setFavorite] = useState([]);
   const [overlay, setOverlay] = useState(false);
-  const [large, setLarge] = useState(false);
-
-  const [active, setActive] = useState(false);
-
-  //
-  const [checked, setChecked] = useState(false);
 
   // open / close info overlay
-
   const openInfo = () => {
     setOverlay(true);
     console.log('lo overlay')
@@ -28,16 +16,9 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
     setOverlay(false);
   };
 
-  const openLarge = () => {
-    setLarge(true);
-  };
-
-  const closeLarge = () => {
-    setLarge(false);
-  };
-
-  const activeCard = ()=> {
-    setActive(true);
+  //modal - see large
+  function handleClick() {
+    seeLarge(image.id);
   }
 
   return (
@@ -66,21 +47,6 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
           </div>
         </div>}
 
-        {large && 
-          <div className="modal-overlay large">
-            <button onClick={closeLarge}>X</button>
-            <div className="modal-content">
-              <img
-              loading="lazy"
-              id={image.id ? image.id.toString():'no-image-found'}
-              className="img-default"
-              src={image.srcLarge} 
-              alt={image.author + '' + image.title}
-              />
-            </div>
-          </div>
-        }
-
         <figure>
             <img
             loading="lazy"
@@ -108,7 +74,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
                   <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
                 </svg>
               </button>
-              <button className="large btn" onClick={openLarge}>
+              <button className="large btn" onClick={() => handleClick()}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
                   <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
                   <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>

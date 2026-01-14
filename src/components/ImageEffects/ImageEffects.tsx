@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { ImageEffectsProps, EffectType } from '@/services/interfaces';
 
 interface ImageEffectsPropsExtended extends ImageEffectsProps {
-  onApplyEffect: (base64: string) => void; // ← Add this callback
+  onApplyEffect: (base64: string) => void; 
 }
 
 
@@ -73,7 +73,6 @@ const applyEffectToCanvas = async () => {
                         <feTurbulence baseFrequency="0.001 0.24" result="NOISE" numOctaves="8" />
                         <feDisplacementMap in="SourceGraphic" in2="NOISE" scale="10" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
                     </filter> */}
-                     {/* SVG filters will go here */}
                     {effect === 'grayscale' && (
                       <filter id="grayscale">
                         <feColorMatrix type="saturate" values="0"/>

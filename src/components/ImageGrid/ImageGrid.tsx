@@ -5,6 +5,7 @@ import { getImageData, getRandomUnique } from "../../services/fetch";
 import { ImageData } from "../../services/interfaces";
 import ImgCard from "../ImageCard/ImageCard";
 import Observer from '../Observer/Observer';
+import Modal from '@/components/Modal/Modal';
 
 interface GalleryGridProps {
   objectIds: number[];
@@ -14,6 +15,8 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
   const [images, setImages] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalImage, setModalImage] = useState<ImageData | null>(null);
 
 
   const loadImages = useCallback(async () => {
@@ -46,7 +49,15 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     }
   };
 
+  const seeLarge = (imageId: number) => {
+    const image = images.find((img) => img.id === imageId);
+    if (!image) return;
+    setModalImage(image);
+    setOpenModal(true);
+}
+
   return (
+    <>
     <div className="main-container">
       <div className="department">
         <p>Current department:</p>
@@ -54,12 +65,14 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
       <div className="img-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
-            <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} />
+            <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} seeLarge={seeLarge}/>
           </div>
         ))}
         <Observer onVisible={loadImages} disabled={loading} />
       </div>
     </div>
+    <Modal currentImg={modalImage} isOpen={openModal}></Modal>
+    </>
   );
 };
 
