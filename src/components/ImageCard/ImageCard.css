@@ -88,9 +88,12 @@
 
 figure {
     border: 1px solid;
-  width: 100%;
-  height: 15rem;
-  overflow: hidden;
+    width: 100%;
+    height: 15rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 figure > img {
@@ -104,10 +107,10 @@ figure:hover > img {
 }
 
 figcaption {
-    max-height: 0;
     opacity: 0;
+    max-height: 0;
+    max-width: 0;
 }
-
 
 .img-menu {
     position: relative;

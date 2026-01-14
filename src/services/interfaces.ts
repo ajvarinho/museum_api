@@ -24,6 +24,7 @@ export interface imgResponse {
 export interface ImageData {
   id: number;
   title: string;
+  fullTitle?: string;
   srcSmall: string;
   srcLarge?: string;
   author?: string;

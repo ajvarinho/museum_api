@@ -60,9 +60,16 @@ const FALLBACK_IMG = fallbackImg.src;
       const hasValidImage =
       data.primaryImageSmall && data.primaryImageSmall.trim() !== "";
 
+      const titleCheck = data.title && data.title.length > 50 ? data.title.substring(0,20) + '...' : data.title;
+      //
+      const title = data.title && data.title.length > 50 ? titleCheck : data.title;
+
+      console.log(title)
+
       const image: ImageData = {
         id: data.objectID,
-        title: data.title || "Image not found",
+        title: titleCheck || "Image not found",
+        fullTitle: data.title || undefined,
         //@ts-ignore
         srcSmall: hasValidImage ? data.primaryImageSmall : FALLBACK_IMG,
         srcLarge: data.primaryImage || undefined,
@@ -70,7 +77,7 @@ const FALLBACK_IMG = fallbackImg.src;
         medium: data.medium || undefined,
         dimensions: data.dimensions || undefined,
         date: data.objectDate || undefined,
-        department: data.department || undefined,
+        department: data.department === 'European Sculpture and Decorative Arts' ? 'European sculpture' : data.department || undefined,
         favorites: false,
       };
 

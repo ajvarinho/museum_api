@@ -30,7 +30,7 @@ export default function Home() {
       <main className="main">
         <div className="welcome-card flex justify-center">
           <p className="welcome-text">
-            Welcome to <a href="https://www.metmuseum.org/" target="_blank">Metropolitan Museum&apos;s</a><br></br>
+            Welcome to <a href="https://www.metmuseum.org/" target="_blank">Metropolitan Museum</a>&apos;s<br></br>
             open access API page. <br></br> 
             Here you can explore the works from Met, add images of works to your collection and edit them.
           </p>

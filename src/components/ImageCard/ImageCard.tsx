@@ -28,7 +28,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
     setOverlay(false);
   };
 
-    const openLarge = () => {
+  const openLarge = () => {
     setLarge(true);
   };
 
@@ -58,7 +58,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
             </button>  
           </div>
           <div className="overlay-wrap">
-            <h3 className="overlay-title">{image.title}</h3>
+            <h3 className="overlay-title">{image.fullTitle}</h3>
             <p>Author: {image.author || 'Unknown'}</p>
             <p>Date: {image.date}</p>  
             <p>Medium: {image.medium}</p>
@@ -135,9 +135,6 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite }) => {
               </div>
 
             </div>
-
-
-
         </div>
     </div>
   );
