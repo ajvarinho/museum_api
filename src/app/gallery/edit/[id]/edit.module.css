@@ -8,15 +8,11 @@
     border: 2px solid red;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 80%;
     bottom: 0;
     right: 0;
     z-index: 5;
-    background: slategray;
+    background: rgb(129, 175, 220);
     height: fit-content;
     width: fit-content;
-}
-
-.edit_wrap {
-
 }
