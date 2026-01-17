@@ -1,6 +1,6 @@
 import { SetStateAction, useState } from "react";
 import { CanvasControlsProps, EffectType } from '@/services/interfaces';
-import '@/components/CanvasControls/CanvasControls.css';
+import canvasControls from '@/components/CanvasControls/CanvasControls.module.css';
 
 export default function CanvasControls({
   strokeWidth,
@@ -33,7 +33,7 @@ export default function CanvasControls({
   };
 
   return (
-    <div className="edit-controls">
+    <div className={canvasControls.edit_controls}>
 
         <div className="draw-mode flex flex-col gap-1">
           <h3>DRAW MODE</h3>

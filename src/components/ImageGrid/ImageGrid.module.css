@@ -1,4 +1,4 @@
-.main-container {
+.main_container {
     height: 90vh;
     width: fit-content;
     position: relative;
@@ -12,11 +12,21 @@
     text-align: right;
 }
 
-.img-container {
+.img_container {
     position: relative;
     width: 100%; 
     max-width: 100vw;
 }
+
+.img_wrap {
+    position: relative;
+    transition-duration: 0.3s;
+    display: inline-block;
+    min-height: 70vh;
+    border: 1px solid black;
+    padding: 1em 2em;
+}
+
 
 @media (max-width: 498px){
     .main-container {

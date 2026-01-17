@@ -171,7 +171,7 @@ label:has(input[type="checkbox"]:checked) .save {
   fill: black;
 }
 
-.fav-input{
+.fav_input{
     height: 0;
     width: 0;
     position: absolute;

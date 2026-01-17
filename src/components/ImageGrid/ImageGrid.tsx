@@ -1,5 +1,5 @@
 'use client';
-import '@/components/ImageGrid/ImageGrid.css';
+import imageGrid from '@/components/ImageGrid/ImageGrid.module.css';
 import { useState, useCallback, useRef } from "react";
 import { getImageData, getRandomUnique } from "../../services/fetch";
 import { ImageData } from "../../services/interfaces";
@@ -67,20 +67,20 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
 
   return (
     <>
-    <div className="main-container" ref={containerRef} onScroll={scrollFn}>
-      <div className="department">
+    <div className={imageGrid.main_container} ref={containerRef} onScroll={scrollFn}>
+      <div className={imageGrid.department}>
         <p>Current department:</p>
       </div>
-      <div className="img-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className={`${imageGrid.img_container} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4`}>
         {images.map((img) => (
-          <div key={img.id} className="img-wrap">
+          <div key={img.id} className={imageGrid.img_wrap}>
             {/* za potpuno reusable komponente (cisti UI) postoji iduci pristup:
             - odvojiti jednu kompjentu koja u sebi samo renderira sliku (iskljucivo kao UI), i tu
             komponentu davati po potrebi:
-            - npr modal - dobije <ImgUI></ImgUI>
+            - npr modal - dobije <ImgHandler></ImgHandler>
             - npr ImageWrap(komponenta unutar imgGrid)
             - ImageWrap moze izgledati ovako:
-            <imgWrap onClick, onLarge, onFavorite>
+            <imgHandler onClick, onLarge, onFavorite>
               <ImgUI>
               <Button>
               </Button>

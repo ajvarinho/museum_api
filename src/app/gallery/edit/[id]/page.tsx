@@ -71,7 +71,6 @@ export default function EditImagePage() {
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
 
       <div className={edit.controls_wrap}>
-
         <CanvasControls
             strokeWidth={strokeWidth}
             onStrokeChange={setStrokeWidth}
@@ -85,7 +84,6 @@ export default function EditImagePage() {
             onEffectChange={handleEffectChange} 
             selectedEffect={currentEffect}      
             />
-
       </div>
 
       <div className={edit.edit_wrap}>

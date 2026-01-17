@@ -1,6 +1,7 @@
 .main {
     position: relative;
-    margin-top: 2rem;
+    margin-top: 4rem;
+    padding: 0 2rem;
 }
 
 .controls_wrap {

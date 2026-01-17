@@ -96,7 +96,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
                     onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
                   />
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <polyline className="save" points="0,0 0,24 12,20 24,24 24,0 0,0" strokeWidth="2" stroke="black" />
+                    <polyline className={imageCard.save} points="0,0 0,24 12,20 24,24 24,0 0,0" strokeWidth="2" stroke="black" />
                   </svg>
                 </label>
               </div>
