@@ -47,3 +47,9 @@
     max-width: 100rem;
     max-height: 10rem;
 }
+
+@media (max-width: 498px){
+    .scroll-wrap {
+        height: 50vh;
+    }
+}

@@ -74,6 +74,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
                   <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
                 </svg>
               </button>
+              {/* napraviti folder sa svg-jevima i export, i dati name */}
               <button className="large btn" onClick={() => handleClick()}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
                   <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>

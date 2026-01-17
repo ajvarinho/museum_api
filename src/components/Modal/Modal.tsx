@@ -14,7 +14,6 @@ const Modal: React.FC<ModalProps> = ({ currentImg, isOpen, onClose }) => {
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-        console.log('esc', e.key)
       if (e.key === 'Escape' && onClose) onClose();
     };
     
@@ -37,8 +36,8 @@ const Modal: React.FC<ModalProps> = ({ currentImg, isOpen, onClose }) => {
                 <button className="close-modal" onClick={onClose}>X</button>
                 <div className="scroll-wrap">
                     <figure className="modal-figure">
-                        <img src={currentImg?.srcLarge} alt={currentImg?.title} className="modal-img" />
-                        <figcaption className="caption">{currentImg?.title}</figcaption>
+                        <img src={currentImg?.srcLarge} alt={currentImg?.fullTitle} className="modal-img" />
+                        <figcaption className="caption">{currentImg?.fullTitle}</figcaption>
                     </figure>
                 </div>
                 <div className="modal-info">

@@ -74,13 +74,30 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
       <div className="img-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {images.map((img) => (
           <div key={img.id} className="img-wrap">
+            {/* za potpuno reusable komponente (cisti UI) postoji iduci pristup:
+            - odvojiti jednu kompjentu koja u sebi samo renderira sliku (iskljucivo kao UI), i tu
+            komponentu davati po potrebi:
+            - npr modal - dobije <ImgUI></ImgUI>
+            - npr ImageWrap(komponenta unutar imgGrid)
+            - ImageWrap moze izgledati ovako:
+            <imgWrap onClick, onLarge, onFavorite>
+              <ImgUI>
+              <Button>
+              </Button>
+            </imgHandler>
+            ili
+            <Modal open/close>
+              <ImgUI>
+              </Modal> */}
             <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} seeLarge={seeLarge}/>
           </div>
         ))}
         <Observer onVisible={loadImages} disabled={loading} />
       </div>
     </div>
-    <Modal currentImg={modalImage} isOpen={openModal} onClose={() => setOpenModal(false)}></Modal>
+    <Modal currentImg={modalImage} isOpen={openModal} onClose={() => setOpenModal(false)}>
+      
+    </Modal>
     </>
   );
 };
