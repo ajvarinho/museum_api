@@ -1,0 +1,14 @@
+/* main {
+        height: 90vh;
+    width: fit-content;
+    position: relative;
+    margin-top: 2rem;
+    padding: 0 2em;
+    overflow: scroll;
+    border: 2em solid;
+} */
+
+.collection_title {
+    font-size: 2rem;
+    color: red;
+}

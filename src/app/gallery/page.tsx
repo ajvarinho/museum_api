@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import Header from '../../components/Header/Header';
 import { ImageData } from '../../services/interfaces';
-
+import collection from './collection.module.css';
 import Link from 'next/link';
 
 const Gallery: React.FC = () => {
@@ -35,13 +35,13 @@ const Gallery: React.FC = () => {
       <Header isLoading={loading}></Header>
       <main>
         <div className={'columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4'}>
-            <p>alo</p>
+            <p className={collection.collection_title}>alo</p>
             {favorites.map((img, index) => (
 
             <div key={index} className="img-wrap">   
               <img key={img.id.toString()} src={img.srcSmall} alt={img.title}/>
               <Link href={`/gallery/edit/${img.id}`}>
-                <button className="btn">Edit</button>
+                <button className={collection.btn}>Edit</button>
               </Link>
               <button className="btn">Remove from favorites</button>
             </div>

@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { CanvasProps } from '@/services/interfaces';
 import { polygonCenter, isPointInside } from '@/services/canvas';
 import { Point } from '@/services/interfaces';
-import '@/components/Canvas/Canvas.css';
+import canvas from '@/components/Canvas/Canvas.module.css';
 
 export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady }: CanvasProps)  {
 
@@ -196,7 +196,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
   };
 
   return (
-    <div className='canvas-wrap'>
+    <div className={canvas.canvas_wrap}>
       <canvas
         ref={canvasRef}
         width={dimensions.x}

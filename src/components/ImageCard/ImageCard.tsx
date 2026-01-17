@@ -1,4 +1,4 @@
-import './ImageCard.css';
+import imageCard from './ImageCard.module.css';
 import { useState } from "react";
 import { ImgCardProps } from '../../services/interfaces';
 
@@ -22,15 +22,15 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
   }
 
   return (
-    <div className="img-card flex flex-column">
+    <div className={`${imageCard.img_card} flex flex-column`}>
 
-        <div className="filter-wrap">
-          <button className="filter">{image.department}</button>
+        <div className={imageCard.filter_wrap}>
+          <button className={imageCard.filter}>{image.department}</button>
         </div>
 
         {overlay && 
-        <div className="info-overlay">
-          <div className="close-wrap">
+        <div className={imageCard.info_overlay}>
+          <div className={imageCard.close_wrap}>
             <button onClick={closeInfo}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24">
                 <line x1="0" x2="24" y1="0" y2="24" stroke="white" strokeLinecap="round" strokeWidth="2"/>
@@ -38,8 +38,8 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
               </svg>  
             </button>  
           </div>
-          <div className="overlay-wrap">
-            <h3 className="overlay-title">{image.fullTitle}</h3>
+          <div className={imageCard.overlay_wrap}>
+            <h3 className={imageCard.overlay_title}>{image.fullTitle}</h3>
             <p>Author: {image.author || 'Unknown'}</p>
             <p>Date: {image.date}</p>  
             <p>Medium: {image.medium}</p>
@@ -47,27 +47,27 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
           </div>
         </div>}
 
-        <figure>
+        <figure className={imageCard.figure}>
             <img
             loading="lazy"
             id={image.id ? image.id.toString():'no-image-found'}
-            className="img-default"
+            className={imageCard.img_default}
             src={image.srcSmall} 
             alt={image.author + '' + image.title}
             />
-            <figcaption>{image.title}</figcaption>
+            <figcaption className={imageCard.figcaption}>{image.title}</figcaption>
         </figure>
 
-        <div className="img-menu flex flex-row justify-around">
+        <div className={`${imageCard.img_menu} flex flex-row justify-around`}>
 
-            <div className="info-wrap">
-              <h4 className="info-title">{image.title}</h4>
+            <div className={imageCard.info_wrap}>
+              <h4 className={imageCard.info_title}>{image.title}</h4>
               <p>{image.author || 'Unknown author'}</p>
               <p>{image.date}</p>  
             </div>
 
-            <div className="btn-wrap">
-              <button className="info btn" onClick={openInfo}>
+            <div className={imageCard.btn_wrap}>
+              <button className={imageCard.btn} onClick={openInfo}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle cx="13" cy="12" r="10" stroke="black" fill="transparent" strokeWidth="2"/>
                   <circle cx="13" cy="7" r="1" stroke="black" fill="black" strokeWidth="1"/>
@@ -75,7 +75,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
                 </svg>
               </button>
               {/* napraviti folder sa svg-jevima i export, i dati name */}
-              <button className="large btn" onClick={() => handleClick()}>
+              <button className={imageCard.btn} onClick={() => handleClick()}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
                   <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
                   <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
@@ -86,13 +86,13 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
                 </svg>
               </button>
 
-              <div className="fav-wrap btn">
+              <div className={imageCard.btn}>
                 <label htmlFor={`save-${image.id}`}>
                   <input
                     id={`save-${image.id}`}
                     type="checkbox"
                     checked={image.favorites}
-                    className="fav-input"
+                    className={imageCard.fav_input}
                     onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
                   />
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

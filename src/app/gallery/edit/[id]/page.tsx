@@ -7,6 +7,7 @@ import Canvas from "@/components/Canvas/Canvas";
 import Header from '@/components/Header/Header';
 import CanvasControls from '@/components/CanvasControls/CanvasControls';
 import ImageEffects from '@/components/ImageEffects/ImageEffects';
+import edit from './edit.module.css';
 
 
 export default function EditImagePage() {
@@ -66,24 +67,28 @@ export default function EditImagePage() {
   return (
     <>
     <Header isLoading={false}></Header>
-    <main className="p-4">
+    <main className={edit.main}>
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
 
-      <CanvasControls
-          strokeWidth={strokeWidth}
-          onStrokeChange={setStrokeWidth}
-          color={color}
-          onColorChange={setColor}
-          crop={crop}
-          setCrop={setCrop}
-          effects={effects}
-          setEffects={setEffects}
-          shapeReady={shapeReady}
-          onEffectChange={handleEffectChange} 
-          selectedEffect={currentEffect}      
-          />
+      <div className={edit.controls_wrap}>
 
-      <div className="edit-wrap">
+        <CanvasControls
+            strokeWidth={strokeWidth}
+            onStrokeChange={setStrokeWidth}
+            color={color}
+            onColorChange={setColor}
+            crop={crop}
+            setCrop={setCrop}
+            effects={effects}
+            setEffects={setEffects}
+            shapeReady={shapeReady}
+            onEffectChange={handleEffectChange} 
+            selectedEffect={currentEffect}      
+            />
+
+      </div>
+
+      <div className={edit.edit_wrap}>
         <div>
           {base64 && dimensions && (
             <Canvas 

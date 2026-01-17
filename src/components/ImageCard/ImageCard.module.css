@@ -1,4 +1,4 @@
-.img-wrap {
+.img_wrap {
     position: relative;
     transition-duration: 0.3s;
     display: inline-block;
@@ -7,13 +7,13 @@
     padding: 1em 2em;
 }
 
-.img-card {
+.img_card {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.filter-wrap {
+.filter_wrap {
     padding: 0 0 0.5rem 0;
     width: 100%;
     text-align: right;
@@ -32,7 +32,7 @@
     background-color: rgb(61, 61, 61);
 }
 
-.info-overlay {
+.info_overlay {
     position: absolute;
     inset: 0;
     background: var(--info-card-bg);
@@ -53,21 +53,21 @@
     }
 }
 
-.info-overlay > .close-wrap {
+.info_overlay > .close_wrap {
     text-align: right;
 }
 
-.overlay-wrap > p {
+.overlay_wrap > p {
     padding: 0.2rem 0;
     color: white;
 }
 
-.overlay-title {
+.overlay_title {
     font-size: 2rem;
     color: white;
 }
 
-.info-title {
+.info_title {
     font-size: 1.2rem;
     color: rgb(0, 0, 0);
     font-weight: 700;
@@ -75,18 +75,18 @@
     padding: 0 0.5rem 0.2rem 0;
 }
 
-.info-wrap {
+.info_wrap {
     display: flex;
     flex-direction: column;
 }
 
-.info-wrap p {
+.info_wrap p {
     font-style: italic;
     color: grey;
 }
 
 
-figure {
+.figure {
     border: 1px solid;
     width: 100%;
     height: 15rem;
@@ -96,7 +96,7 @@ figure {
     justify-content: center;
 }
 
-figure > img {
+.figure > img {
     width: 100%;
     object-fit: contain;
     transition-duration: 0.7s;
@@ -106,13 +106,13 @@ figure:hover > img {
    transform: scale(1.1);
 }
 
-figcaption {
+.figcaption {
     opacity: 0;
     max-height: 0;
     max-width: 0;
 }
 
-.img-menu {
+.img_menu {
     position: relative;
     width: 100%;
     display: flex;
@@ -122,7 +122,7 @@ figcaption {
     margin-top: 0.5rem;
 }
 
-.btn-wrap {
+.btn_wrap {
     display: flex;
   flex-direction: column;
 }
@@ -180,7 +180,7 @@ label:has(input[type="checkbox"]:checked) .save {
 
 
 @media (max-width: 490px) {
-    .img-wrap {
+    .img_wrap {
         min-width: 50%;
     }
 }

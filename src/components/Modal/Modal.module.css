@@ -1,4 +1,4 @@
-.modal{
+.modal {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.8);
@@ -8,7 +8,7 @@
   z-index: 10;
 }
 
-.modal-wrap {
+.modal_wrap {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
@@ -19,13 +19,13 @@
 
 }
 
-.scroll-wrap {
+.scroll_wrap {
     height: 75vh;
     width: 100%;
     overflow: scroll;
 }
 
-.modal-figure {
+.modal_figure {
     height: fit-content;
     width: 100%;
     display: flex;
@@ -34,7 +34,7 @@
     gap: 1rem;
 }
 
-.modal-figure:hover > img {
+.modal_figure:hover > img {
     transform: scale(1);
 }
 
@@ -49,7 +49,7 @@
 }
 
 @media (max-width: 498px){
-    .scroll-wrap {
+    .scroll_wrap {
         height: 50vh;
     }
 }
