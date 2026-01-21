@@ -69,7 +69,7 @@ export default function EditImagePage() {
     <Header isLoading={false}></Header>
     <main className={edit.main}>
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
-
+      
       <div className={edit.controls_wrap}>
         <CanvasControls
             strokeWidth={strokeWidth}

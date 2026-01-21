@@ -70,6 +70,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     <div className={imageGrid.main_container} ref={containerRef} onScroll={scrollFn}>
       <div className={imageGrid.department}>
         <p>Current department:</p>
+        <button>all</button>
       </div>
       <div className={`${imageGrid.img_container} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4`}>
         {images.map((img) => (
