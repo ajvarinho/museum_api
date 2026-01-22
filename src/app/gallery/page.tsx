@@ -7,27 +7,30 @@ import Link from 'next/link';
 
 const Gallery: React.FC = () => {
 
-  const [favorites, setFavorites] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
-
+  
   const getFavorites = ():ImageData[] => {
     setLoading(true);
+
     const savedImg:ImageData[] = [];
     Object.keys(localStorage).forEach((key) => {
-    const item: string | null = localStorage.getItem(key);
-    if (item) {
-    console.log(item);
-      savedImg.push(JSON.parse(item));
-      setLoading(false);
-    }
-  });
+      const item: string | null = localStorage.getItem(key);
+      if (item) {
+        console.log(item);
+        savedImg.push(JSON.parse(item));
+        setLoading(false);
+      }
+    });
     return savedImg;
   } 
+  
+  const [favorites, setFavorites] = useState<ImageData[]>(() => getFavorites());
 
-  useEffect(() => {
-    const stored = getFavorites();
-    setFavorites(stored);
-  }, []);
+  const removeFavorite = (imageId: number) => {
+    const updatedFavorites = favorites.filter(fav => fav.id !== imageId);
+    setFavorites(updatedFavorites);
+    localStorage.removeItem(imageId.toString());
+};
 
 
   return (
@@ -38,12 +41,12 @@ const Gallery: React.FC = () => {
             <p className={collection.collection_title}>alo</p>
             {favorites.map((img, index) => (
 
-            <div key={index} className="img-wrap">   
+            <div key={index} className={collection.img_wrap}>   
               <img key={img.id.toString()} src={img.srcSmall} alt={img.title}/>
               <Link href={`/gallery/edit/${img.id}`}>
                 <button className={collection.btn}>Edit</button>
               </Link>
-              <button className="btn">Remove from favorites</button>
+              <button className={collection.btn} onClick={()=>removeFavorite(img.id)}>Remove from favorites</button>
             </div>
           ))}
         </div>

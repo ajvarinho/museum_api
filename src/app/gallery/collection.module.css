@@ -12,3 +12,18 @@
     font-size: 2rem;
     color: red;
 }
+
+.img_wrap {
+    padding: 1rem;
+    border: 1px solid black;
+    margin: 1rem;
+    background: rgb(222, 178, 178);
+}
+
+.btn {
+    cursor: pointer;
+    border: 1px solid;
+    padding: 0.2rem 0.5rem;
+    color: black;
+    background: pink;
+}

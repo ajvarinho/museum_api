@@ -95,7 +95,7 @@ const FALLBACK_IMG = fallbackImg.src;
   export const loadImages = async (objectIds:number[]): Promise<ImageData[]> => {
 
     if (objectIds.length === 0) return [];
-    const randomIds = getRandomUnique(objectIds, 10);
+    const randomIds = getRandomUnique(objectIds, 12);
     const results = await Promise.all(randomIds.map(getImageData));
     console.log('results from loadImages', results)
     const validImages = results.filter(
