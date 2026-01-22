@@ -12,6 +12,10 @@ const Gallery: React.FC = () => {
   const getFavorites = ():ImageData[] => {
     setLoading(true);
 
+    if (typeof window === 'undefined') {
+      return []; 
+    }
+
     const savedImg:ImageData[] = [];
     Object.keys(localStorage).forEach((key) => {
       const item: string | null = localStorage.getItem(key);
