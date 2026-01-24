@@ -14,6 +14,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [cropShape, setCropShape] = useState(false);
+  const [savedImg, setSavedImg] = useState<string | null>('')
 
   // crop mode state
   //const cropPoints = useRef<{ x: number; y: number }[]>([]);
@@ -33,11 +34,16 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
 
     const img = new Image();
     img.src = base64;
+    if(savedImg){
+      img.src = savedImg;
 
+    }
+    
     img.onload = () => {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
     };
-  }, [base64, dimensions]);
+  }, [base64, dimensions, savedImg]);
 
   const handleMouseDown_Draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!ctxRef.current) return;
@@ -172,13 +178,15 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     if(!cutoutRef.current) return;
     const cutout = cutoutRef.current;
     const savedImg = cutout.toDataURL('image/png');
-    console.log('saved img', savedImg)
+    setSavedImg(savedImg);
+    console.log('saved img', savedImg, typeof savedImg)
   }
 
   const tryAgain = () => {
     if(!cutoutRef.current) return;
     const pointsCtx = cutoutRef.current.getContext("2d");
     pointsCtx!.clearRect(0, 0, cutoutRef.current.width, cutoutRef.current.height);
+    // clean array and reset
     pointsRef.current.length = 0;
     console.log('points array', pointsRef.current)
     //
@@ -207,6 +215,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       />
+      {/* mozda tu cropShape check */}
       <div className="cutout">
         <canvas ref={cutoutRef}
         width={500}
