@@ -14,11 +14,13 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [cropShape, setCropShape] = useState(false);
-  const [savedImg, setSavedImg] = useState<string | null>('')
+  const [savedImg, setSavedImg] = useState<string | null>('');
 
   // crop mode state
   //const cropPoints = useRef<{ x: number; y: number }[]>([]);
   const cropPoints = useRef<Point[]>([]);
+  // test sa useState
+  const [cropCoordinates, setCropCoordinates]= useState<{ x: number; y: number }[]>([]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -36,7 +38,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     img.src = base64;
     if(savedImg){
       img.src = savedImg;
-
+      //mozda promijentiti cropPoints u state i init sa praznim arrayom
     }
     
     img.onload = () => {
@@ -104,6 +106,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
       onShapeReady(true);
       //
       setCropShape(true);
+     
       const boundingBox = points.reduce(
         (acc, p) => ({
           minX: Math.min(acc.minX, p.x),
@@ -128,6 +131,9 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
           }
         }
       };
+
+       //
+      setCropCoordinates(cutoutPoints);
       //
       const boxWidth = boundingBox.maxX - boundingBox.minX + 1;
       const boxHeight = boundingBox.maxY - boundingBox.minY + 1;
@@ -157,6 +163,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
           output.data[i + 3] = 255;
         };
       };
+      console.log('cutout points fn check', cutoutPoints)
       pointsCtx.putImageData(output, 0, 0);
     };
   }
@@ -185,10 +192,12 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
   const tryAgain = () => {
     if(!cutoutRef.current) return;
     const pointsCtx = cutoutRef.current.getContext("2d");
+        //get cutut context and erase canvas
     pointsCtx!.clearRect(0, 0, cutoutRef.current.width, cutoutRef.current.height);
     // clean array and reset
-    pointsRef.current.length = 0;
-    console.log('points array', pointsRef.current)
+    cropPoints.current = [];
+    setCropShape(false);
+    onShapeReady(false);
     //
     const canvas = canvasRef.current;
     const ctx = canvas!.getContext("2d");
@@ -201,6 +210,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     img.onload = () => {
       ctx.drawImage(img, 0, 0, canvas!.width, canvas!.height);
     };
+
   };
 
   return (
