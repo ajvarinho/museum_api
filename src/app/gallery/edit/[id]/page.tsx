@@ -23,9 +23,9 @@ export default function EditImagePage() {
   const [crop, setCrop] = useState(false);
   const [effects, setEffects] = useState(false);
   //
+  const [croppedBase64, setCroppedBase64] = useState<string | null>(null);
   const [shapeReady, setShapeReady] = useState(false);
-  
- const [currentEffect, setCurrentEffect] = useState<EffectType>('none');
+  const [currentEffect, setCurrentEffect] = useState<EffectType>('none');
 
   /**
    * get image from localStorage and convert to base64
@@ -54,15 +54,25 @@ export default function EditImagePage() {
 
   }, [id]);
 
+  const handleImageSaved = (savedBase64: string) => {
+    setCroppedBase64(savedBase64);
+  };
+
   const handleEffectChange = (effect: EffectType) => {
     setCurrentEffect(effect);
   };
 
   const handleApplyEffect = (newBase64: string) => {
-    setBase64(newBase64); 
+    if (croppedBase64) {
+      setCroppedBase64(newBase64);
+    } else {
+      setBase64(newBase64);
+    }
     setEffects(false); 
     setCurrentEffect('none'); 
   };
+
+  const currentBase64 = croppedBase64 || base64;
 
   return (
     <>
@@ -96,11 +106,12 @@ export default function EditImagePage() {
               color={color}
               mode={crop ? "crop" : "draw"}
               onShapeReady={setShapeReady}
+              onImageSaved={handleImageSaved}
               />
           )}
         </div>
 
-        {base64 && effects && (
+        {currentBase64 && effects && (
           <div className="modal-overlay">
             <div className="modal-content">
                 <button 
@@ -110,7 +121,7 @@ export default function EditImagePage() {
                   ×
                 </button>
                 <ImageEffects 
-                  base64={base64} 
+                  base64={currentBase64!} 
                   dimensions={dimensions} 
                   effect={currentEffect} 
                   onEffectChange={handleEffectChange}

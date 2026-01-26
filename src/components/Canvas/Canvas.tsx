@@ -4,7 +4,7 @@ import { polygonCenter, isPointInside } from '@/services/canvas';
 import { Point } from '@/services/interfaces';
 import canvas from '@/components/Canvas/Canvas.module.css';
 
-export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady }: CanvasProps)  {
+export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady, onImageSaved }: CanvasProps)  {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const cutoutRef = useRef<HTMLCanvasElement | null>(null);
@@ -191,6 +191,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     const pointsCtx = cutoutRef.current.getContext("2d");
     pointsCtx!.clearRect(0, 0, cutoutRef.current.width, cutoutRef.current.height);
     cropPoints.current = [];
+    onImageSaved?.(savedImg);
     console.log('saved img', savedImg, typeof savedImg, 'alo', cropPoints)
   }
 
@@ -238,8 +239,8 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
         />
         {cropShape && (
         <div>  
-          <button className="btn" onClick={saveImage}>Save shape</button>
-          <button className="btn" onClick={tryAgain}>Try again</button>
+          <button className={canvas.btn} onClick={saveImage}>Save shape</button>
+          <button className={canvas.btn} onClick={tryAgain}>Try again</button>
         </div>
         )}
       </div>

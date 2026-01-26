@@ -3,11 +3,12 @@ import { ImageEffectsProps, EffectType } from '@/services/interfaces';
 
 interface ImageEffectsPropsExtended extends ImageEffectsProps {
   onApplyEffect: (base64: string) => void; 
+  // savedImg: string;
 }
 
 
 export default function ImageEffects({
-  base64, dimensions, effect, onEffectChange, onApplyEffect 
+  base64, dimensions, effect, onEffectChange, onApplyEffect
 }: ImageEffectsPropsExtended) {
 
     const img = base64;

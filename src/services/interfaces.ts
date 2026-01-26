@@ -62,6 +62,7 @@ export interface CanvasProps {
   color: string;
   mode: "draw" | "crop";
   onShapeReady: (ready: boolean) => void;
+  onImageSaved?: (base64: string) => void;
 };
 
 export interface CanvasControlsProps {
