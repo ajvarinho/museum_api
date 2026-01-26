@@ -186,7 +186,12 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
     const cutout = cutoutRef.current;
     const savedImg = cutout.toDataURL('image/png');
     setSavedImg(savedImg);
-    console.log('saved img', savedImg, typeof savedImg)
+    setCropShape(false);
+    onShapeReady(false);
+    const pointsCtx = cutoutRef.current.getContext("2d");
+    pointsCtx!.clearRect(0, 0, cutoutRef.current.width, cutoutRef.current.height);
+    cropPoints.current = [];
+    console.log('saved img', savedImg, typeof savedImg, 'alo', cropPoints)
   }
 
   const tryAgain = () => {
