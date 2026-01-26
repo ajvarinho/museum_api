@@ -1,6 +1,7 @@
 import imageCard from './ImageCard.module.css';
 import { useState } from "react";
 import { ImgCardProps } from '../../services/interfaces';
+import { SvgIcon } from '@/components/UI/Icons/SvgIcon';
 
 const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) => {
 
@@ -32,10 +33,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
         <div className={imageCard.info_overlay}>
           <div className={imageCard.close_wrap}>
             <button onClick={closeInfo}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="24" width="24" viewBox="0 0 24 24">
-                <line x1="0" x2="24" y1="0" y2="24" stroke="white" strokeLinecap="round" strokeWidth="2"/>
-                <line x1="24" x2="0" y1="0" y2="24" stroke="white" strokeLinecap="round" strokeWidth="2"/>
-              </svg>  
+              <SvgIcon name={'close'}/>  
             </button>  
           </div>
           <div className={imageCard.overlay_wrap}>
@@ -68,22 +66,10 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
 
             <div className={imageCard.btn_wrap}>
               <button className={imageCard.btn} onClick={openInfo}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle cx="13" cy="12" r="10" stroke="black" fill="transparent" strokeWidth="2"/>
-                  <circle cx="13" cy="7" r="1" stroke="black" fill="black" strokeWidth="1"/>
-                  <line x1="13" x2="13" y1="12" y2="18" stroke="black" strokeLinecap="round" strokeWidth="2"/>
-                </svg>
+                <SvgIcon name={'info'}/>
               </button>
-              {/* napraviti folder sa svg-jevima i export, i dati name */}
               <button className={imageCard.btn} onClick={() => handleClick()}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="">
-                  <line x1="0" x2="24" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
-                  <line x1="24" x2="0" y1="0" y2="24" stroke="black" strokeLinecap="round" strokeWidth="1.5"/>
-                  <polyline className="save" points="0,9 0,0 9,0" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                  <polyline className="save" points="15,0 24,0 24,9" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                  <polyline className="save" points="0,15 0,24 9,24" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                  <polyline className="save" points="15,24 24,24 24,15" strokeLinecap="round" strokeWidth="2" stroke="black" />
-                </svg>
+                <SvgIcon name={'seelarge'}/>
               </button>
 
               <div className={imageCard.btn}>
@@ -95,9 +81,7 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
                     className={imageCard.fav_input}
                     onChange={(e) => onToggleFavorite(image.id, e.target.checked)}
                   />
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <polyline className={imageCard.save} points="0,0 0,24 12,20 24,24 24,0 0,0" strokeWidth="2" stroke="black" />
-                  </svg>
+                  <SvgIcon name={'save'}/>
                 </label>
               </div>
 
