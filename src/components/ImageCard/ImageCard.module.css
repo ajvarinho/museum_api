@@ -167,7 +167,7 @@ figure:hover > img {
     transition: fill 0.6s;
 }
 
-label:has(input[type="checkbox"]:checked) .save {
+label:has(input[type="checkbox"]:checked) svg > polyline {
   fill: black;
 }
 

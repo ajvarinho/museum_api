@@ -8,8 +8,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isLoading }) => {
     return(
         <header className={'title' + (isLoading ? '' : ' loaded')}>
-            <Link href="/">HOME</Link>
-            <Link href="/gallery">MY COLLECTION</Link>
+            <Link href="/">Main Page</Link>
+            <Link href="/gallery">My Collection</Link>
         </header>
     )
 }

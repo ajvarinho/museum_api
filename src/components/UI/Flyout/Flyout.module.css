@@ -1,0 +1,151 @@
+.wrap {
+    padding: 2rem;
+    border: 1rem solid blue;
+    background: orange;
+}
+
+.flyout_container {
+  position: relative;
+}
+
+.flyout_trigger {
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.flyout_trigger:hover {
+  background: #f5f5f5;
+}
+
+.flyout_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 998;
+  animation: fadeIn 0.2s;
+}
+
+.flyout_panel {
+  position: fixed;
+  background: white;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  max-height: 100vh;
+}
+
+/* Position variants */
+.flyout_right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  max-width: 90vw;
+  transform: translateX(100%);
+}
+
+.flyout_right.open {
+  transform: translateX(0);
+}
+
+.flyout_left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  max-width: 90vw;
+  transform: translateX(-100%);
+}
+
+.flyout_left.open {
+  transform: translateX(0);
+}
+
+.flyout_top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  max-height: 90vh;
+  transform: translateY(-100%);
+}
+
+.flyout_top.open {
+  transform: translateY(0);
+}
+
+.flyout_bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  max-height: 90vh;
+  transform: translateY(100%);
+}
+
+.flyout_bottom.open {
+  transform: translateY(0);
+}
+
+.flyout_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.flyout_title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.flyout_close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.flyout_close:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+
+.flyout_content {
+  padding: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

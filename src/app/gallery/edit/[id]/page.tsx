@@ -8,6 +8,7 @@ import Header from '@/components/Header/Header';
 import CanvasControls from '@/components/CanvasControls/CanvasControls';
 import ImageEffects from '@/components/ImageEffects/ImageEffects';
 import edit from './edit.module.css';
+import Flyout from '@/components/UI/Flyout/Flyout';
 
 
 export default function EditImagePage() {
@@ -81,7 +82,8 @@ export default function EditImagePage() {
       <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
       
       <div className={edit.controls_wrap}>
-        <CanvasControls
+        <Flyout title="Canvas Controls">
+          <CanvasControls
             strokeWidth={strokeWidth}
             onStrokeChange={setStrokeWidth}
             color={color}
@@ -93,7 +95,9 @@ export default function EditImagePage() {
             shapeReady={shapeReady}
             onEffectChange={handleEffectChange} 
             selectedEffect={currentEffect}      
-            />
+          />
+        </Flyout>
+
       </div>
 
       <div className={edit.edit_wrap}>
