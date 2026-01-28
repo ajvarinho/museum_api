@@ -1,10 +1,12 @@
 'use client';
 import { useState, ReactNode } from "react";
 import flyout from './Flyout.module.css';
+import Button from '@/components/UI/Button/Button';
+import { SvgIcon } from '@/components/UI/Icons/SvgIcon';
 
 interface FlyoutProps {
   children: ReactNode;
-  trigger?: ReactNode; // Optional custom trigger
+  trigger?: ReactNode; 
   position?: 'left' | 'right' | 'top' | 'bottom';
   title?: string;
 }
@@ -24,7 +26,8 @@ export default function Flyout({
     <div className={flyout.wrap}>
 
       <div className={flyout.flyout_container}>
-      <button 
+      <Button 
+        name="edit menu"
         className={flyout.flyout_trigger} 
         onClick={toggleFlyout}
         aria-label="Toggle flyout"
@@ -34,20 +37,21 @@ export default function Flyout({
             <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         )}
-      </button>
+      </Button>
 
       <div 
         className={`${flyout.flyout_panel} ${flyout[`flyout_${position}`]} ${isOpen ? flyout.open : ''}`}
       >
         <div className={flyout.flyout_header}>
           {title && <h2 className={flyout.flyout_title}>{title}</h2>}
-          <button 
+          <Button 
+            name='close menu'
             className={flyout.flyout_close} 
             onClick={closeFlyout}
             aria-label="Close flyout"
           >
-            ×
-          </button>
+            <SvgIcon name='close'/>
+          </Button>
         </div>
         
         <div className={flyout.flyout_content}>

@@ -5,6 +5,7 @@ import btn from './Button.module.css';
 interface ButtonProps {
   name: string;
   icon?: ReactNode;
+  children: ReactNode;
   onClick: () => void;
   className?: string;
   iconPosition?: 'left' | 'right';
@@ -12,19 +13,16 @@ interface ButtonProps {
 
 export default function Button({ 
   name, 
-  icon, 
+  children,
   onClick, 
   className = '',
 }: ButtonProps) {
   return (
     <button 
       onClick={onClick}
-      className={`btn ${className}`}
+      className={`${btn.btn} ${className}`}
     >
-      <span className="btn-text">{name}</span>
-      {icon && (
-        <span className="btn-icon">{icon}</span>
-      )}
+      {children || name}
     </button>
   );
 }

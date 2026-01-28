@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import { ImageData } from '../../services/interfaces';
 import collection from './collection.module.css';
 import Link from 'next/link';
+import Button from '@/components/UI/Button/Button';
 
 const Gallery: React.FC = () => {
 
@@ -48,9 +49,9 @@ const Gallery: React.FC = () => {
             <div key={index} className={collection.img_wrap}>   
               <img key={img.id.toString()} src={img.srcSmall} alt={img.title}/>
               <Link href={`/gallery/edit/${img.id}`}>
-                <button className={collection.btn}>Edit</button>
+                <Button name="edit" onClick={()=>{}}>Edit</Button>
               </Link>
-              <button className={collection.btn} onClick={()=>removeFavorite(img.id)}>Remove from favorites</button>
+              <Button name="remove from favorites" onClick={()=>removeFavorite(img.id)}>Remove from favorites</Button>
             </div>
           ))}
         </div>

@@ -16,14 +16,6 @@ export default function CanvasControls({
 }: CanvasControlsProps) {
 
   const [selectedEffect, setSelectedEffect] = useState<EffectType>('none');
-  const saveImg = ()=> {
-    console.log('alo  save')
-  };
-
-  const removeImg = ()=> {
-    console.log('alo remove')
-  }
-
 
   const handleEffectSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const effect = e.target.value as EffectType;

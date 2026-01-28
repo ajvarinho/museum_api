@@ -2,15 +2,18 @@ import imageCard from './ImageCard.module.css';
 import { useState } from "react";
 import { ImgCardProps } from '../../services/interfaces';
 import { SvgIcon } from '@/components/UI/Icons/SvgIcon';
+import Button from '@/components/UI/Button/Button';
+import btn from '@/components/UI/Button/Button.module.css';
 
 const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) => {
 
   const [overlay, setOverlay] = useState(false);
 
+  const filterResults = ()=> {};
+
   // open / close info overlay
   const openInfo = () => {
     setOverlay(true);
-    console.log('lo overlay')
   };
 
   const closeInfo = () => {
@@ -26,15 +29,19 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
     <div className={`${imageCard.img_card} flex flex-column`}>
 
         <div className={imageCard.filter_wrap}>
-          <button className={imageCard.filter}>{image.department}</button>
+          <Button name='filter' className={btn.rounded} onClick={filterResults}>{image.department}</Button>
         </div>
 
         {overlay && 
         <div className={imageCard.info_overlay}>
           <div className={imageCard.close_wrap}>
-            <button onClick={closeInfo}>
-              <SvgIcon name={'close'}/>  
-            </button>  
+            <Button
+            name='close'
+            className='close'
+            onClick={closeInfo}
+            >
+              <SvgIcon name={'close'}/> 
+            </Button>
           </div>
           <div className={imageCard.overlay_wrap}>
             <h3 className={imageCard.overlay_title}>{image.fullTitle}</h3>
@@ -65,12 +72,13 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) 
             </div>
 
             <div className={imageCard.btn_wrap}>
-              <button className={imageCard.btn} onClick={openInfo}>
+
+              <Button name="openInfo" onClick={openInfo}>
                 <SvgIcon name={'info'}/>
-              </button>
-              <button className={imageCard.btn} onClick={() => handleClick()}>
+              </Button>
+              <Button name="see-large" onClick={() => handleClick()}>
                 <SvgIcon name={'seelarge'}/>
-              </button>
+              </Button>
 
               <div className={imageCard.btn}>
                 <label htmlFor={`save-${image.id}`}>

@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { ImageEffectsProps, EffectType } from '@/services/interfaces';
+import Button from '@/components/UI/Button/Button';
 
 interface ImageEffectsPropsExtended extends ImageEffectsProps {
   onApplyEffect: (base64: string) => void; 
@@ -124,7 +125,7 @@ const applyEffectToCanvas = async () => {
               <option value="saturate">Saturate</option>
             </select>
             {effect !== 'none' && (
-              <button onClick={applyEffectToCanvas}>save changes</button>
+              <Button name="save effects" onClick={applyEffectToCanvas}>save changes</Button>
             )}
         </div>
         
