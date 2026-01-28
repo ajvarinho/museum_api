@@ -16,6 +16,10 @@
     .canvas_wrap {
         flex-direction: column;
     }
+
+    .cutout {
+        overflow:hidden;
+    }
 }
 
 

@@ -232,7 +232,7 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
         onMouseLeave={handleMouseUp}
       />
       {/* mozda tu cropShape check */}
-      <div className="cutout">
+      <div className={canvas.cutout}>
         <canvas ref={cutoutRef}
         width={500}
         height={500}
