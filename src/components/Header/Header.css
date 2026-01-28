@@ -33,6 +33,6 @@ header.loaded {
 
 @media (max-width: 498px){
     header {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 }

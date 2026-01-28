@@ -11,3 +11,11 @@
     background: rgb(234, 234, 127);
 }
 
+
+@media (max-width: 498px){
+    .canvas_wrap {
+        flex-direction: column;
+    }
+}
+
+

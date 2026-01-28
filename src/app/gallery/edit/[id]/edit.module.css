@@ -4,15 +4,9 @@
     padding: 0 2rem;
 }
 
-.controls_wrap {
-    border: 2px solid red;
-    position: absolute;
-    top: 0;
-    left: 80%;
-    bottom: 0;
-    right: 0;
-    z-index: 5;
-    background: rgb(129, 175, 220);
-    height: fit-content;
-    width: fit-content;
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: last baseline;
 }
+

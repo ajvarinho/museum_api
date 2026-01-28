@@ -79,26 +79,30 @@ export default function EditImagePage() {
     <>
     <Header isLoading={false}></Header>
     <main className={edit.main}>
-      <h1 className="text-xl font-semibold mb-4">Edit Image #{id}</h1>
-      
-      <div className={edit.controls_wrap}>
-        <Flyout title="Canvas Controls">
-          <CanvasControls
-            strokeWidth={strokeWidth}
-            onStrokeChange={setStrokeWidth}
-            color={color}
-            onColorChange={setColor}
-            crop={crop}
-            setCrop={setCrop}
-            effects={effects}
-            setEffects={setEffects}
-            shapeReady={shapeReady}
-            onEffectChange={handleEffectChange} 
-            selectedEffect={currentEffect}      
-          />
-        </Flyout>
+
+      <div className={edit.heading}>
+        <h2 className="text-xl font-semibold mb-4">Edit Image #{id}</h2>
+        <div className={edit.controls_wrap}>
+          <Flyout title="Canvas Controls">
+            <CanvasControls
+              strokeWidth={strokeWidth}
+              onStrokeChange={setStrokeWidth}
+              color={color}
+              onColorChange={setColor}
+              crop={crop}
+              setCrop={setCrop}
+              effects={effects}
+              setEffects={setEffects}
+              shapeReady={shapeReady}
+              onEffectChange={handleEffectChange} 
+              selectedEffect={currentEffect}      
+            />
+          </Flyout>
+        </div>
 
       </div>
+      
+
 
       <div className={edit.edit_wrap}>
         <div>
