@@ -12,21 +12,10 @@ import Loading from '../components/Loading/Loading';
 export default function Home() {
 
   const { objectIds, setObjectIds } = useImagesContext();
-  //const [objectIds, setObjectIds] = useState<number[]>([]);
+
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchIds = async () => {
-  //     setLoading(true);
-  //     const ids = await getData();
-  //     setObjectIds(ids);
-  //     setLoading(false);
-  //   };
-  //   fetchIds();
-  // }, []);
-
-    useEffect(() => {
-    // Only fetch if objectIds are empty
+  useEffect(() => {
     if (objectIds.length === 0) {
       const fetchIds = async () => {
         setLoading(true);

@@ -10,7 +10,6 @@ const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge, on
   const [overlay, setOverlay] = useState(false);
 
   const filterResults = () => {
-    // Call the parent function with the department
     onFilterClick(image.department || 'All');
   };
 

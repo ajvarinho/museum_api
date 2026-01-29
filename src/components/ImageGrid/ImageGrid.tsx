@@ -1,6 +1,6 @@
 'use client';
 import imageGrid from '@/components/ImageGrid/ImageGrid.module.css';
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { getImageData, getRandomUnique } from "../../services/fetch";
 import { ImageData } from "../../services/interfaces";
 import { useImagesContext } from '@/app/provider/ImageProvider';
@@ -16,13 +16,17 @@ interface GalleryGridProps {
 
 const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
   const { images, setImages, scrollPosition, setScrollPosition } = useImagesContext();
-  //const [images, setImages] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalImage, setModalImage] = useState<ImageData | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [scrollTop, setScrollTop] = useState<number>();
   const [filter, setFilter] = useState<string>('All');
+
+  useEffect(() => {
+    if (containerRef.current && scrollPosition > 0) {
+      containerRef.current.scrollTop = scrollPosition;
+    }
+  }, [scrollPosition]);
 
   const loadImages = useCallback(async () => {
     if (objectIds.length === 0 || loading) return;
@@ -38,7 +42,6 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
 
 
   const handleToggleFavorite = (id: number, checked: boolean) => {
-
     setImages((prev) =>
     prev.map((img) =>
         img.id === id ? { ...img, favorites: checked } : img
@@ -61,22 +64,19 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
     setOpenModal(true);
   }
 
-  const scrollFn = ()=>{
+  const scrollFn = () => {
     if (!containerRef.current) return;
     const scrollVal = Math.floor(containerRef.current.scrollTop);
-    setScrollTop(scrollVal);
+    setScrollPosition(scrollVal); 
   }
 
   const filterResults = (department:string)=>{
     setFilter(department);
-    console.log('alo bre', filter);
-
   }
 
   const filteredImages = filter === 'All' 
   ? images 
   : images.filter(img => img.department === filter);
-
 
   return (
     <>
