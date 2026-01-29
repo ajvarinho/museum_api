@@ -9,11 +9,11 @@
   width: 100%;
 }
 
-.btn {
+/* .btn {
     cursor: pointer;
     padding: 0.2rem 1rem;
     border: 1px solid white;
-}
+} */
 
 .controls_wrap > input {
     height: 1rem;

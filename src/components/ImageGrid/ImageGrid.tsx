@@ -25,7 +25,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
   const loadImages = useCallback(async () => {
     if (objectIds.length === 0 || loading) return;
     setLoading(true);
-    const randomIds = getRandomUnique(objectIds, 10);
+    const randomIds = getRandomUnique(objectIds, 12);
     const results = await Promise.all(randomIds.map(getImageData));
     const validImages = results.filter(
       (img): img is ImageData => img !== null

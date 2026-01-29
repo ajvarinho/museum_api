@@ -1,6 +1,6 @@
 import { SetStateAction, useState } from "react";
 import { CanvasControlsProps, EffectType } from '@/services/interfaces';
-import canvasControls from '@/components/CanvasControls/CanvasControls.module.css';
+import canvasControls from './CanvasControls.module.css';
 
 export default function CanvasControls({
   strokeWidth,

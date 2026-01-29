@@ -56,15 +56,20 @@ const FALLBACK_IMG = fallbackImg.src;
       );
       const data: imgResponse = await res.json();
 
-      // helper to check if data.primaryImage is empty string
+      if(data.objectID === undefined){
+        console.log('Skipping id (id undefined):', id);
+        return null;
+      }
+
+      // helper to check if data.primaryImage is empty string, if not, skip the image
       const hasValidImage =
       data.primaryImageSmall && data.primaryImageSmall.trim() !== "";
 
+      if (hasValidImage === '') {
+        console.log('Skipping id (no image):', id);
+        return null;
+      }
       const titleCheck = data.title && data.title.length > 50 ? data.title.substring(0,20) + '...' : data.title;
-      //
-      const title = data.title && data.title.length > 50 ? titleCheck : data.title;
-
-      console.log(title)
 
       const image: ImageData = {
         id: data.objectID,
@@ -83,6 +88,7 @@ const FALLBACK_IMG = fallbackImg.src;
 
       console.log('image in get image data', image)
       return image;
+
     } catch (err) {
       console.error("Error fetching image:", err);
       return null;
