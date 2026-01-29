@@ -40,6 +40,7 @@ export interface ImgCardProps {
   image: ImageData;
   onToggleFavorite: (id: number, checked: boolean) => void;
   seeLarge: (id: number) => void;
+  onFilterClick: (department: string) => void;
 };
 
 export interface entry {

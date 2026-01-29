@@ -5,11 +5,14 @@ import { SvgIcon } from '@/components/UI/Icons/SvgIcon';
 import Button from '@/components/UI/Button/Button';
 import btn from '@/components/UI/Button/Button.module.css';
 
-const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge }) => {
+const ImgCard: React.FC<ImgCardProps> = ({ image, onToggleFavorite, seeLarge, onFilterClick }) => {
 
   const [overlay, setOverlay] = useState(false);
 
-  const filterResults = ()=> {};
+  const filterResults = () => {
+    // Call the parent function with the department
+    onFilterClick(image.department || 'All');
+  };
 
   // open / close info overlay
   const openInfo = () => {

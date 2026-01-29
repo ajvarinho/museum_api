@@ -46,10 +46,8 @@ body {
 } */
 
 .welcome-card {
-  min-height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 5vh;
+  margin-top: 5rem;
 }
 
 .welcome-card a {

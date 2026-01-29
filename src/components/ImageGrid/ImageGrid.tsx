@@ -3,6 +3,7 @@ import imageGrid from '@/components/ImageGrid/ImageGrid.module.css';
 import { useState, useCallback, useRef } from "react";
 import { getImageData, getRandomUnique } from "../../services/fetch";
 import { ImageData } from "../../services/interfaces";
+import { useImagesContext } from '@/app/provider/ImageProvider';
 import ImgCard from "../ImageCard/ImageCard";
 import Observer from '../Observer/Observer';
 import Modal from '@/components/Modal/Modal';
@@ -10,17 +11,18 @@ import Button from '@/components/UI/Button/Button';
 
 interface GalleryGridProps {
   objectIds: number[];
+  department: string;
 }
 
-const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
-
-  const [images, setImages] = useState<ImageData[]>([]);
+const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
+  const { images, setImages, scrollPosition, setScrollPosition } = useImagesContext();
+  //const [images, setImages] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalImage, setModalImage] = useState<ImageData | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [scrollTop, setScrollTop] = useState<number>();
-
+  const [filter, setFilter] = useState<string>('All');
 
   const loadImages = useCallback(async () => {
     if (objectIds.length === 0 || loading) return;
@@ -32,7 +34,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     );
     setImages((prev) => [...prev, ...validImages]);
     setLoading(false);
-  }, [objectIds, loading]);
+  }, [objectIds, loading, setImages]);
 
 
   const handleToggleFavorite = (id: number, checked: boolean) => {
@@ -65,20 +67,34 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
     setScrollTop(scrollVal);
   }
 
-  const filterResults = ()=>{
-    console.log('alo bre')
+  const filterResults = (department:string)=>{
+    setFilter(department);
+    console.log('alo bre', filter);
+
   }
+
+  const filteredImages = filter === 'All' 
+  ? images 
+  : images.filter(img => img.department === filter);
 
 
   return (
     <>
     <div className={imageGrid.main_container} ref={containerRef} onScroll={scrollFn}>
       <div className={imageGrid.department}>
-        <p>Current department:</p>
-        <Button name='department' className='rounded' onClick={filterResults}>all</Button>
+        <p>Current department: {filter}</p>
+          {filter !== 'All' && (
+            <Button 
+              name="reset-filter" 
+              onClick={() => setFilter('All')}
+              className="reset rounded"
+            >
+              ✕ Clear filter
+            </Button>
+          )}
       </div>
       <div className={`${imageGrid.img_container} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4`}>
-        {images.map((img) => (
+        {filteredImages.map((img) => (
           <div key={img.id} className={imageGrid.img_wrap}>
             {/* za potpuno reusable komponente (cisti UI) postoji iduci pristup:
             - odvojiti jednu kompjentu koja u sebi samo renderira sliku (iskljucivo kao UI), i tu
@@ -95,7 +111,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds }) => {
             <Modal open/close>
               <ImgUI>
               </Modal> */}
-            <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} seeLarge={seeLarge}/>
+            <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} seeLarge={seeLarge} onFilterClick={filterResults}/>
           </div>
         ))}
         <Observer onVisible={loadImages} disabled={loading} />
