@@ -51,7 +51,7 @@ export interface ScrollObserverProps {
   onVisible: () => void;
   disabled?: boolean; 
   rootMargin?: string;
-  scrollContainer?: HTMLElement | null;
+  scrollContainer?: React.RefObject<HTMLDivElement | null>;
 }
 
 // canvas props

@@ -107,8 +107,8 @@ const applyEffectToCanvas = async () => {
 
                 <image
                   href={base64}
-                  width={dimensions.x}
-                  height={dimensions.y}
+                  width="0"
+                  height="0"
                   filter={effect !== 'none' ? `url(#${effect})` : undefined}
                 />
 

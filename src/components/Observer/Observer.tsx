@@ -2,15 +2,14 @@
 import { useEffect, useRef } from "react";
 import { ScrollObserverProps } from '@/services/interfaces';
 
-
 const ScrollObserver: React.FC<ScrollObserverProps> = ({
   onVisible,
   disabled = false,
   rootMargin = "100px",
-  scrollContainer = null,
+  scrollContainer,
 }) => {
-
-
+  
+  
   const ref = useRef<HTMLDivElement | null>(null);
 
   const style = {
@@ -31,7 +30,7 @@ const ScrollObserver: React.FC<ScrollObserverProps> = ({
         }
       },
       {
-        root: scrollContainer,
+        root: scrollContainer?.current,
         rootMargin,
         threshold: 0.1,
       }

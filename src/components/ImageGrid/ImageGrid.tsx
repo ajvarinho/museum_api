@@ -15,18 +15,19 @@ interface GalleryGridProps {
 }
 
 const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
-  const { images, setImages, scrollPosition, setScrollPosition } = useImagesContext();
+  const { images, setImages } = useImagesContext();
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalImage, setModalImage] = useState<ImageData | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [filter, setFilter] = useState<string>('All');
 
-  useEffect(() => {
-    if (containerRef.current && scrollPosition > 0) {
-      containerRef.current.scrollTop = scrollPosition;
-    }
-  }, [scrollPosition]);
+
+  // useEffect(() => {
+  //   if (containerRef.current && scrollPosition > 0) {
+  //     containerRef.current.scrollTop = scrollPosition;
+  //   }
+  // }, [scrollPosition]);
 
   const loadImages = useCallback(async () => {
     if (objectIds.length === 0 || loading) return;
@@ -64,11 +65,13 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
     setOpenModal(true);
   }
 
-  const scrollFn = () => {
-    if (!containerRef.current) return;
-    const scrollVal = Math.floor(containerRef.current.scrollTop);
-    setScrollPosition(scrollVal); 
-  }
+  //kad sam ovo zvao, repainta cijelu komponentu
+  // ne treba se desavati na scrollu
+  // const scrollFn = () => {
+  //   if (!containerRef.current) return;
+  //   const scrollVal = Math.floor(containerRef.current.scrollTop);
+  //   setScrollPosition(scrollVal); 
+  // }
 
   const filterResults = (department:string)=>{
     setFilter(department);
@@ -80,7 +83,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
 
   return (
     <>
-    <div className={imageGrid.main_container} ref={containerRef} onScroll={scrollFn}>
+    <div id="test-wrap" className={imageGrid.main_container} ref={containerRef}>
       <div className={imageGrid.department}>
         <p>Current department: {filter}</p>
           {filter !== 'All' && (
@@ -114,7 +117,7 @@ const ImageGrid: React.FC<GalleryGridProps> = ({ objectIds, department }) => {
             <ImgCard key={img.id} image={img} onToggleFavorite={handleToggleFavorite} seeLarge={seeLarge} onFilterClick={filterResults}/>
           </div>
         ))}
-        <Observer onVisible={loadImages} disabled={loading} />
+        <Observer onVisible={loadImages} disabled={loading} scrollContainer={containerRef}/>
       </div>
     </div>
     <Modal currentImg={modalImage} isOpen={openModal} onClose={() => setOpenModal(false)}>
