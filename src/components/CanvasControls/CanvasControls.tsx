@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useState, useRef } from "react";
 import { CanvasControlsProps, EffectType } from '@/services/interfaces';
 import canvasControls from './CanvasControls.module.css';
 
@@ -10,12 +10,16 @@ export default function CanvasControls({
   crop,
   setCrop,
   shapeReady,
-  effects,
-  setEffects,
-  onEffectChange
+  //effects,
+  effect,
+  //setEffects,
+  onEffectChange,
+  //applyEffectToCanvas
 }: CanvasControlsProps) {
 
   const [selectedEffect, setSelectedEffect] = useState<EffectType>('none');
+  const [effects, setEffects] = useState(false);
+  console.log('effects controls', effects)
 
   const handleEffectSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const effect = e.target.value as EffectType;
@@ -59,11 +63,29 @@ export default function CanvasControls({
                 Effects
                 <input
                   type="checkbox"
-                  checked={effects}
+                  checked={Boolean(effects)}
                   onChange={(e) => setEffects(e.target.checked)}
                 />
               </label>
           </div>
+
+            {effects && (
+              <div className="select-wrap">
+              <label>Choose Effect:</label>
+                <select value={effect} onChange={handleEffectSelect}>
+                  <option value="none">Select effect</option>
+                  <option value="grayscale">Grayscale</option>
+                  <option value="turbulence">Turbulence</option>
+                  <option value="blur">Blur</option>
+                  <option value="saturate">Saturate</option>
+                </select>
+                {effect !== 'none' && (
+                  // onClick={applyEffectToCanvas}
+                  <button name="save effects">save changes</button>
+                )}
+              </div>
+            )}
+
         </div>
 
         <div className="crop-mode flex flex-col">

@@ -22,6 +22,7 @@ export default function EditImagePage() {
   const [strokeWidth, setStrokeWidth] = useState(1);
   const [color, setColor] = useState("#000000ff");
   const [crop, setCrop] = useState(false);
+  // open the effect select element
   const [effects, setEffects] = useState(false);
   //
   const [croppedBase64, setCroppedBase64] = useState<string | null>(null);
@@ -59,8 +60,10 @@ export default function EditImagePage() {
     setCroppedBase64(savedBase64);
   };
 
+  //selected effect, to pass to imageEffects
   const handleEffectChange = (effect: EffectType) => {
     setCurrentEffect(effect);
+    console.log('effect page', effect)
   };
 
   const handleApplyEffect = (newBase64: string) => {
@@ -75,34 +78,30 @@ export default function EditImagePage() {
 
   const currentBase64 = croppedBase64 || base64;
 
+  console.log('test render', currentBase64, effects)
+
   return (
     <>
     <Header isLoading={false}></Header>
     <main className={edit.main}>
-
+      <h2 className="text-xl font-semibold mb-4">Edit Image #{id}</h2>
       <div className={edit.heading}>
-        <h2 className="text-xl font-semibold mb-4">Edit Image #{id}</h2>
+
         <div className={edit.controls_wrap}>
-          <Flyout title="Canvas Controls">
-            <CanvasControls
-              strokeWidth={strokeWidth}
-              onStrokeChange={setStrokeWidth}
-              color={color}
-              onColorChange={setColor}
-              crop={crop}
-              setCrop={setCrop}
-              effects={effects}
-              setEffects={setEffects}
-              shapeReady={shapeReady}
-              onEffectChange={handleEffectChange} 
-              selectedEffect={currentEffect}      
-            />
-          </Flyout>
+          <CanvasControls
+            strokeWidth={strokeWidth}
+            onStrokeChange={setStrokeWidth}
+            color={color}
+            onColorChange={setColor}
+            crop={crop}
+            setCrop={setCrop}
+            effect={currentEffect}
+            shapeReady={shapeReady}
+            onEffectChange={handleEffectChange} 
+            selectedEffect={currentEffect}      
+          />
         </div>
-
       </div>
-      
-
 
       <div className={edit.edit_wrap}>
         <div>
@@ -117,27 +116,17 @@ export default function EditImagePage() {
               onImageSaved={handleImageSaved}
               />
           )}
-        </div>
 
-        {currentBase64 && effects && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-                <button 
-                  className="modal-close" 
-                  onClick={() => setEffects(false)}
-                >
-                  ×
-                </button>
-                <ImageEffects 
-                  base64={currentBase64!} 
-                  dimensions={dimensions} 
-                  effect={currentEffect} 
-                  onEffectChange={handleEffectChange}
-                  onApplyEffect={handleApplyEffect}
-                />
-            </div>
-          </div>
-        )}
+          {currentBase64 && currentEffect && (
+            <ImageEffects 
+              base64={currentBase64!} 
+              dimensions={dimensions} 
+              effect={currentEffect} 
+              onEffectChange={handleEffectChange}
+              onApplyEffect={handleApplyEffect}
+            />
+          )}
+        </div>
 
       </div>
     </main>

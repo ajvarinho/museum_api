@@ -7,23 +7,19 @@ interface ImageEffectsPropsExtended extends ImageEffectsProps {
   // savedImg: string;
 }
 
-
 export default function ImageEffects({
   base64, dimensions, effect, onEffectChange, onApplyEffect
 }: ImageEffectsPropsExtended) {
 
     const img = base64;
+    console.log('efect component', effect)
 
     const svgRef = useRef<SVGSVGElement>(null);
 
-      console.log('ImageEffects render - effect:', effect);
-    
     useEffect(() => {
       if (!svgRef.current) return;
       console.log('selected effect:', effect);
-    
-
-  }, [effect, base64]);
+    }, [effect, base64]);
 
   const handleEffectSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newEffect = e.target.value as EffectType;
@@ -71,10 +67,6 @@ const applyEffectToCanvas = async () => {
         <div style={{ height: 0 }}>
             <svg ref={svgRef}>
                 <defs>
-                    {/* <filter id="noise-basic" x="0%" y="0%" width="100%" height="100%">
-                        <feTurbulence baseFrequency="0.001 0.24" result="NOISE" numOctaves="8" />
-                        <feDisplacementMap in="SourceGraphic" in2="NOISE" scale="10" xChannelSelector="R" yChannelSelector="R"></feDisplacementMap>
-                    </filter> */}
                     {effect === 'grayscale' && (
                       <filter id="grayscale">
                         <feColorMatrix type="saturate" values="0"/>
@@ -114,21 +106,6 @@ const applyEffectToCanvas = async () => {
 
             </svg>
         </div>
-
-        <div className="select-wrap">
-          <label>Choose Effect:</label>
-            <select value={effect} onChange={handleEffectSelect}>
-              <option value="none">Select effect</option>
-              <option value="grayscale">Grayscale</option>
-              <option value="turbulence">Turbulence</option>
-              <option value="blur">Blur</option>
-              <option value="saturate">Saturate</option>
-            </select>
-            {effect !== 'none' && (
-              <Button name="save effects" onClick={applyEffectToCanvas}>save changes</Button>
-            )}
-        </div>
-        
         <svg className="svg-wrapper" width={dimensions.x} height={dimensions.y} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1">
             <image href={img} className="img" x="0" y="0" height="100%" width="100%" filter={effect !== 'none' ? `url(#${effect})` : undefined} />
         </svg>

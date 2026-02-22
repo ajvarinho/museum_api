@@ -74,11 +74,11 @@ export interface CanvasControlsProps {
   crop: boolean;
   setCrop: (v: boolean) => void;
   shapeReady: boolean;
-  effects: boolean;
-  setEffects: (e: boolean) => void;
+  effect: string;
   selectedEffect: string;
   //
   onEffectChange: (effect: EffectType) => void;
+  //applyEffectToCanvas: (e: string) => void;
 };
 
 // canvas crop point type

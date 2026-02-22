@@ -1,3 +1,5 @@
 .effects-wrap {
-    
+    position: absolute;
+    top: 0;
+    inset: 0;
 }

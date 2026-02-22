@@ -3,6 +3,7 @@ import { CanvasProps } from '@/services/interfaces';
 import { polygonCenter, isPointInside } from '@/services/canvas';
 import { Point } from '@/services/interfaces';
 import canvas from '@/components/Canvas/Canvas.module.css';
+import clsx from 'clsx';
 
 export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, onShapeReady, onImageSaved }: CanvasProps)  {
 
@@ -15,6 +16,8 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
   const [isDrawing, setIsDrawing] = useState(false);
   const [cropShape, setCropShape] = useState(false);
   const [savedImg, setSavedImg] = useState<string | null>('');
+
+
 
   // crop mode state
   //const cropPoints = useRef<{ x: number; y: number }[]>([]);
@@ -221,29 +224,34 @@ export default function Canvas ({ base64, dimensions, strokeWidth, color, mode, 
 
   return (
     <div className={canvas.canvas_wrap}>
-      <canvas
-        ref={canvasRef}
-        width={dimensions.x}
-        height={dimensions.y}
-        onClick={handleMouseMove}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-      />
-      {/* mozda tu cropShape check */}
-      <div className={canvas.cutout}>
-        <canvas ref={cutoutRef}
-        width={500}
-        height={500}
+      <div className={canvas.canvas}>
+        <canvas
+          ref={canvasRef}
+          width={dimensions.x}
+          height={dimensions.y}
+          onClick={handleMouseMove}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          className={clsx(canvas.canvas_default, cropShape ? canvas.obscure : '')}
         />
+        <canvas ref={cutoutRef}
+          width={dimensions.x}
+          height={dimensions.y}
+          className={canvas.canvas_cutout}
+        />
+
+      </div>
+
+      {/* mozda tu cropShape check */}
+
         {cropShape && (
         <div>  
           <button className={canvas.btn} onClick={saveImage}>Save shape</button>
           <button className={canvas.btn} onClick={tryAgain}>Try again</button>
         </div>
         )}
-      </div>
     </div>
   );
 }

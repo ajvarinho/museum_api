@@ -4,6 +4,25 @@
     padding: 2rem;
 }
 
+.canvas {
+    position: relative;
+}
+
+/* .canvas_default {
+    position: absolute;
+} */
+
+.canvas_default.obscure {
+    opacity: 0.5;
+}
+
+.canvas_cutout {
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    margin: auto;
+}
+
 .btn {
     padding: 0.2rem 0.5rem;
     cursor: pointer;
